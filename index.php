@@ -1,9 +1,11 @@
 <?php
 require_once 'loader.php';
-$query = '';
-if(isset ($_GET['query'])) {
-    $query = htmlspecialchars($_GET['query']);
-}
+
+$query = getGETValue('query');
+$database = getGETValue('database', 'matweb');
+
+$databases = array('matweb', 'jpw');
+
 ?>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -12,13 +14,18 @@ if(isset ($_GET['query'])) {
 <h1>Chandler &mdash; FCA vyhledávač</h1>
 
 <form method="get">
-    <input type="text" size="50" name="query" value="<?=$query?>"> <input type="submit" name="search">
+    <input type="text" size="50" name="query" value="<?=$query?>"> <input type="submit" name="search"><br>
+    <select name="database">
+        <?php
+        foreach ($databases as $dtb) {
+            $selected = $dtb == $database ? 'selected' : '';
+            echo "<option $selected>$dtb</option>\n";
+        }
+        ?>
+    </select>
 </form>
 
 <?php
-$database = 'matweb';
-
-
 if($query) {
     $searchResults = search($query, $database);
     $jsonDecode = json_decode($searchResults);
@@ -27,6 +34,6 @@ if($query) {
     echo getLinksList($jsonDecode);
 
     echo '<h2>Další možnosti</h2>';
-    $fca = getFcaExtension($jsonDecode, $query);
+    $fca = getFcaExtension($jsonDecode, $query, $database);
     echo $fca['spec'], '<br><hr>', $fca['sib'];
 }

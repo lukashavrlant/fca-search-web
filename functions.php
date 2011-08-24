@@ -12,39 +12,49 @@ function getLinksList($results, $max = 15) {
     $html = '<ol>';
     foreach (array_slice($documents, 0, $max) as $document) {
         $url = $document->url;
-        $html .= getLink($url, $url, 'li');
+        $title = $document->title;
+        $html .= getLink($url, $title, 'li');
     }
     $html .= '</ol>';
     $html .= '<strong>Total documents: ' . $number . '</strong>';
     return $html;
 }
 
-function getFcaExtension($results, $originQuery) {
+function getFcaExtension($results, $originQuery, $database) {
     $fca = $results->fca;
-    $specStr = fcaSpec($fca->spec, $originQuery);
-    $siblStr = fcaSiblings($fca->sib);
+    $specStr = fcaSpec($fca->spec, $originQuery, $database);
+    $siblStr = fcaSiblings($fca->sib, $database);
     #$genStr = fcaExt2string($fca->gen, '-');
     return array('spec' => $specStr, 'sib' => $siblStr);
 }
 
-function fcaSpec($fca, $originQuery, $symbol = '+') {
+function fcaSpec($fca, $originQuery, $database, $symbol = '+') {
     $data = array();
     
     foreach ($fca as $sugg) {
         $text = $symbol . ' ' . implode(", ", $sugg);
-        $href = '?query=' . $originQuery . ' ' . implode(" ", $sugg);
+        $par = array(
+            'database' => $database,
+            'query' => $originQuery . ' ' . implode(" ", $sugg)
+        );
+        
+        $href = '?' . http_build_query($par);
         array_push($data, getLink($href, $text));
     }
     
     return implode(' | ', $data);
 }
 
-function fcaSiblings($fca, $symbol = "≈") {
+function fcaSiblings($fca, $database, $symbol = "≈") {
     $data = array();
     
     foreach ($fca as $sugg) {
         $text = $symbol . ' ' . implode(', ', $sugg);
-        $href = '?query=' . implode(' ', $sugg);
+        $parameters = array(
+            'query' => implode(' ', $sugg),
+            'database' => $database
+        );
+        $href = '?' . http_build_query($parameters);
         array_push($data, getLink($href, $text));
     }
     
@@ -57,4 +67,12 @@ function getLink($href, $text, $wrapper = '') {
         $html = "<$wrapper>$html</$wrapper>";
     }
     return $html;
+}
+
+function getGETValue($name, $default = '') {
+    if(isset ($_GET[$name])) {
+        return htmlspecialchars($_GET[$name]);
+    } else {
+        return $default;
+    }
 }
