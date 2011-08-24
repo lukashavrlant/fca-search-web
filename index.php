@@ -7,8 +7,8 @@ $database = getGETValue('database', 'matweb');
 $databases = array('matweb', 'jpw');
 
 ?>
-
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!DOCTYPE HTML>
+<meta charset="utf-8">
 <title>Chandler &mdash; FCA vyhledávač</title>
 
 <h1>Chandler &mdash; FCA vyhledávač</h1>
