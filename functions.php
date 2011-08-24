@@ -38,7 +38,7 @@ function fcaSpec($fca, $originQuery, $database, $symbol = '+') {
             'query' => $originQuery . ' ' . implode(" ", $sugg)
         );
         
-        $href = '?' . http_build_query($par);
+        $href = getHTTPQuery($par);
         array_push($data, getLink($href, $text));
     }
     
@@ -54,7 +54,7 @@ function fcaSiblings($fca, $database, $symbol = "≈") {
             'query' => implode(' ', $sugg),
             'database' => $database
         );
-        $href = '?' . http_build_query($parameters);
+        $href = getHTTPQuery($parameters);
         array_push($data, getLink($href, $text));
     }
     
@@ -75,4 +75,10 @@ function getGETValue($name, $default = '') {
     } else {
         return $default;
     }
+}
+
+function getHTTPQuery($parameters) {
+    $httpQuery = '?' . http_build_query($parameters);
+    $httpQuery = str_replace('&', '&amp;', $httpQuery);
+    return $httpQuery;
 }
