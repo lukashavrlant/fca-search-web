@@ -28,5 +28,5 @@ if($query) {
 
     echo '<h2>Další možnosti</h2>';
     $fca = getFcaExtension($jsonDecode, $query);
-    echo $fca['spec'], '<br><br>', $fca['sib'];
+    echo $fca['spec'], '<br><hr>', $fca['sib'];
 }
