@@ -4,14 +4,14 @@ require_once 'loader.php';
 $query = getGETValue('query');
 $database = getGETValue('database', 'matweb');
 
-$databases = array('matweb', 'jpw');
+$databases = array('matweb', 'jpw', 'inf');
 
 ?>
 <!DOCTYPE HTML>
 <meta charset="utf-8">
 <title>Chandler &mdash; FCA vyhledávač</title>
 
-<h1>Chandler &mdash; FCA vyhledávač</h1>
+<h1><a href="./">Chandler &mdash; FCA vyhledávač</a></h1>
 
 <form method="get">
     <input type="text" size="50" name="query" value="<?=$query?>"> <input type="submit" name="search"><br>
