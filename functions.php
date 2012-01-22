@@ -2,7 +2,7 @@
 
 function search($query, $database, $format = 'json') {
     $command = CMD . "-d $database -q \"$query\" -f $format";
-    $data = shell_exec($command);
+    $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
     return $data;
 }
 

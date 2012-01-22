@@ -1,4 +1,5 @@
 <?php
+setlocale(LC_ALL, 'cs_CZ.utf8');
 require_once 'loader.php';
 
 $query = getGETValue('query');
