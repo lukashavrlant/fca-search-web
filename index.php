@@ -27,15 +27,16 @@ if ($query) {
 		    <div class="searchinput">
 		    	<input type="text" size="50" name="query" value="<?=$query?>" class="in"> 
 		    	<input type="submit" name="search" class="ok" value="search">
+		    
+			    <select name="database">
+			        <?php
+			        foreach ($databases as $dtb) {
+			            $selected = $dtb == $database ? 'selected' : '';
+			            echo "<option $selected>$dtb</option>\n";
+			        }
+			        ?>
+			    </select>
 		    </div>
-		    <!--<select name="database">
-		        <?php
-		        foreach ($databases as $dtb) {
-		            $selected = $dtb == $database ? 'selected' : '';
-		            echo "<option $selected>$dtb</option>\n";
-		        }
-		        ?>
-		    </select>-->
 		</form>
 		
 		<div class="suggestions">
