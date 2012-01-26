@@ -14,23 +14,30 @@ class Paginator {
 			return '';
 		
 		$steps = ceil($this->number / $this->onPage);
-		$from = max(1, $currentPage - (int)($this->showMax / 2));
-		$to = min($steps, $from + $this->showMax);
 		
-		$html = '<div class="steps">';
-		
-		for($i=$from; $i < $to; $i++) {
-			$html .= $this->addStep($i);
+		if ($steps > $this->showMax) {
+			$from = max(1, $currentPage - (int)($this->showMax / 2));
+			$to = min($steps, $from + $this->showMax);
+		} else {
+			$from = 1;
+			$to = $steps;
 		}
 		
-		$html .= '</div>';
+		$html = "<div class='steps'>\n";
+		
+		for($i=$from; $i < $to; $i++) {
+			$html .= $this->addStep($i, $i == $currentPage);
+		}
+		
+		$html .= '<div class="cleaner"></div></div>';
 		return $html;
 	}
 	
-	private function addStep($page)
+	private function addStep($page, $curr)
 	{
 		$href = $this->getHref($page);
-		return "<span><a href='$href'>$page</a></span>";
+		$class = $curr ? ' class="currentpage"' : '';
+		return "<span$class><a href='$href'>$page</a></span>\n";
 	}
 	
 	private function getHref($page) {

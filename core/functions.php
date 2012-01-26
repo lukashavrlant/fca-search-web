@@ -23,7 +23,7 @@ function getLinksList($results, $page = 1, $linksCount = 15) {
 	$paginator = new Paginator($number);
 	$html .= $paginator->getList($page);
 	
-    $html .= '<strong>Total documents: ' . $number . '</strong>';
+    $html .= '<small>Total documents: ' . $number . '</small>';
     return $html;
 }
 
