@@ -1,6 +1,6 @@
 <?php
 setlocale(LC_ALL, 'cs_CZ.utf8');
-require_once 'loader.php';
+require_once 'core/loader.php';
 
 $query = getGETValue('query');
 $database = getGETValue('database', 'matweb');

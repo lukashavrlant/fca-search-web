@@ -6,16 +6,31 @@ function search($query, $database, $format = 'json') {
     return $data;
 }
 
-function getLinksList($results, $max = 15) {
+function getLinksList($results, $page = 1, $linksCount = 15) {
+	$page = getGETValue('page', $page);
+	$from = ($page - 1) * $linksCount; 
     $documents = $results->documents;
     $number = count($documents);
     $html = '<ol>';
-    foreach (array_slice($documents, 0, $max) as $document) {
+	
+    foreach (array_slice($documents, $from, $linksCount) as $document) {
         $url = $document->url;
         $title = $document->title;
         $html .= getLink($url, $title, 'li');
     }
     $html .= '</ol>';
+	
+	/*if ($from + $linksCount < $number) {
+		$parameters = $_GET;
+		$parameters['page'] = $page + 1; 
+		$href = getHTTPQuery($parameters);
+		$next = getLink($href, 'Další odkazy &raquo;');
+		echo $next;
+	}*/
+	
+	$paginator = new Paginator($number);
+	echo $paginator->getList();
+	
     $html .= '<strong>Total documents: ' . $number . '</strong>';
     return $html;
 }
@@ -77,7 +92,9 @@ function getGETValue($name, $default = '') {
     }
 }
 
-function getHTTPQuery($parameters) {
+function getHTTPQuery($parameters = false) {
+	if (!$parameters)
+		$parameters = $_GET;
     $httpQuery = '?' . http_build_query($parameters);
     $httpQuery = str_replace('&', '&amp;', $httpQuery);
     return $httpQuery;
