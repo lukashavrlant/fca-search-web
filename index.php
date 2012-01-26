@@ -10,32 +10,42 @@ $databases = array('matweb', 'jpw', 'inf');
 ?>
 <!DOCTYPE HTML>
 <meta charset="utf-8">
-<title>Chandler &mdash; FCA vyhledávač</title>
+<title>Chandler &mdash; FCA search engine</title>
 <link rel="stylesheet" media="screen" href="styly.css">
 
-<h1><a href="./">Chandler &mdash; FCA vyhledávač</a></h1>
-
-<form method="get">
-    <input type="text" size="50" name="query" value="<?=$query?>"> <input type="submit" name="search"><br>
-    <select name="database">
-        <?php
-        foreach ($databases as $dtb) {
-            $selected = $dtb == $database ? 'selected' : '';
-            echo "<option $selected>$dtb</option>\n";
-        }
-        ?>
-    </select>
-</form>
-
-<?php
-if($query) {
-    $searchResults = search($query, $database);
-    $jsonDecode = json_decode($searchResults);
-
-    echo '<h2>Výsledky hledání</h2>';
-    echo getLinksList($jsonDecode);
-
-    echo '<h2>Další možnosti</h2>';
-    $fca = getFcaExtension($jsonDecode, $query, $database);
-    echo $fca['spec'], '<br><hr>', $fca['sib'];
-}
+<div class="web">
+	<div class="header"><h1><a href="./">Chandler &mdash; FCA search engine</a></h1></div>
+	
+	<div class="content">
+		<form method="get" class="search">
+		    <div class="searchinput">
+		    	<input type="text" size="50" name="query" value="<?=$query?>" class="in"> 
+		    	<input type="submit" name="search" class="ok" value="search">
+		    </div>
+		    <!--<select name="database">
+		        <?php
+		        foreach ($databases as $dtb) {
+		            $selected = $dtb == $database ? 'selected' : '';
+		            echo "<option $selected>$dtb</option>\n";
+		        }
+		        ?>
+		    </select>-->
+		</form>
+		
+		<div class="results">
+			<?php
+			if($query) {
+			    $searchResults = search($query, $database);
+			    $jsonDecode = json_decode($searchResults);
+			
+			    echo '<h2>Search results</h2>';
+			    echo getLinksList($jsonDecode);
+			
+			    echo '<h2>Další možnosti</h2>';
+			    $fca = getFcaExtension($jsonDecode, $query, $database);
+			    echo $fca['spec'], '<br><hr>', $fca['sib'];
+			}
+			?>
+		</div>
+	</div>
+</div>
