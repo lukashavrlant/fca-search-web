@@ -1,5 +1,7 @@
 <?php
 setlocale(LC_ALL, 'cs_CZ.utf8');
+define(ROOT, dirname(__FILE__) . '/');
+
 require_once 'core/loader.php';
 
 $query = getGETValue('query');
