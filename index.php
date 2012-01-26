@@ -7,6 +7,10 @@ $database = getGETValue('database', 'matweb');
 
 $databases = array('matweb', 'jpw', 'inf');
 
+if ($query) {
+	$searchResults = search($query, $database);
+    $jsonDecode = json_decode($searchResults);
+}
 ?>
 <!DOCTYPE HTML>
 <meta charset="utf-8">
@@ -32,18 +36,19 @@ $databases = array('matweb', 'jpw', 'inf');
 		    </select>-->
 		</form>
 		
+		<div class="suggestions">
+			<?php
+				//echo '<h2>Další možnosti</h2>';
+			    $fca = getFcaExtension($jsonDecode);
+			    echo '<div>', $fca['spec'], '</div><div>', $fca['sib'], '</div>';
+			?>
+		</div>
+		
 		<div class="results">
 			<?php
-			if($query) {
-			    $searchResults = search($query, $database);
-			    $jsonDecode = json_decode($searchResults);
-			
+			if($query) {			
 			    echo '<h2>Search results</h2>';
 			    echo getLinksList($jsonDecode);
-			
-			    echo '<h2>Další možnosti</h2>';
-			    $fca = getFcaExtension($jsonDecode, $query, $database);
-			    echo $fca['spec'], '<br><hr>', $fca['sib'];
 			}
 			?>
 		</div>

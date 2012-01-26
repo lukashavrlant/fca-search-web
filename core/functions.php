@@ -27,45 +27,12 @@ function getLinksList($results, $page = 1, $linksCount = 15) {
     return $html;
 }
 
-function getFcaExtension($results, $originQuery, $database) {
-    $fca = $results->fca;
-    $specStr = fcaSpec($fca->spec, $originQuery, $database);
-    $siblStr = fcaSiblings($fca->sib, $database);
-    #$genStr = fcaExt2string($fca->gen, '-');
+function getFcaExtension($results) {   
+   	$fca = new Fca($results);
+   	$specStr = $fca->getSpecialization();
+    $siblStr = $fca->getSimilar();
+   
     return array('spec' => $specStr, 'sib' => $siblStr);
-}
-
-function fcaSpec($fca, $originQuery, $database, $symbol = '+') {
-    $data = array();
-    
-    foreach ($fca as $sugg) {
-        $text = $symbol . ' ' . implode(", ", $sugg);
-        $par = array(
-            'database' => $database,
-            'query' => $originQuery . ' ' . implode(" ", $sugg)
-        );
-        
-        $href = getHTTPQuery($par);
-        array_push($data, getLink($href, $text));
-    }
-    
-    return implode(' | ', $data);
-}
-
-function fcaSiblings($fca, $database, $symbol = "≈") {
-    $data = array();
-    
-    foreach ($fca as $sugg) {
-        $text = $symbol . ' ' . implode(', ', $sugg);
-        $parameters = array(
-            'query' => implode(' ', $sugg),
-            'database' => $database
-        );
-        $href = getHTTPQuery($parameters);
-        array_push($data, getLink($href, $text));
-    }
-    
-    return implode(' | ', $data);
 }
 
 function getLink($href, $text, $wrapper = '') {

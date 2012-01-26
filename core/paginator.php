@@ -20,7 +20,7 @@ class Paginator {
 			$to = min($steps, $from + $this->showMax);
 		} else {
 			$from = 1;
-			$to = $steps;
+			$to = $steps+1;
 		}
 		
 		$html = "<div class='steps'>\n";
