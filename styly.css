@@ -30,7 +30,7 @@ h1 a {
 }
 
 form.search {
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 .searchinput {
@@ -51,6 +51,12 @@ form.search {
 	border-top: 2px dashed #ddd;
 	margin-top: 20px;
 	padding-top: 20px;
+}
+
+.results li {
+	padding: 5px;
+	font-size: 115%;
+	_list-style-type: none;
 }
 
 .steps a {
@@ -75,6 +81,13 @@ form.search {
 .suggestions {
 	font-size: 80%;
 	margin-bottom:30px;
+}
+
+.footer {
+	font-size: 80%;
+	border-top: 2px dashed #ddd;
+	margin-top: 30px;
+	padding-top: 30px;
 }
 
 

@@ -38,9 +38,11 @@ if ($query) {
 		
 		<div class="suggestions">
 			<?php
-				//echo '<h2>Další možnosti</h2>';
-			    $fca = getFcaExtension($jsonDecode);
-			    echo '<div>', $fca['spec'], '</div><div>', $fca['sib'], '</div>';
+				if($query) {
+					//echo '<h2>Další možnosti</h2>';
+				    $fca = getFcaExtension($jsonDecode);
+				    echo '<div>', $fca['spec'], '</div><div>', $fca['sib'], '</div>';
+				}
 			?>
 		</div>
 		
