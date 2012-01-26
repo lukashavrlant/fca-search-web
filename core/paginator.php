@@ -9,14 +9,17 @@ class Paginator {
 		$this->number = $number;
 	}
 	
-	public function getList() {
+	public function getList($currentPage) {
 		if($this->number <= $this->onPage) 
 			return '';
 		
 		$steps = ceil($this->number / $this->onPage);
+		$from = max(1, $currentPage - (int)($this->showMax / 2));
+		$to = min($steps, $from + $this->showMax);
+		
 		$html = '<div class="steps">';
 		
-		for($i=1; $i < $steps; $i++) {
+		for($i=$from; $i < $to; $i++) {
 			$html .= $this->addStep($i);
 		}
 		

@@ -20,16 +20,8 @@ function getLinksList($results, $page = 1, $linksCount = 15) {
     }
     $html .= '</ol>';
 	
-	/*if ($from + $linksCount < $number) {
-		$parameters = $_GET;
-		$parameters['page'] = $page + 1; 
-		$href = getHTTPQuery($parameters);
-		$next = getLink($href, 'Další odkazy &raquo;');
-		echo $next;
-	}*/
-	
 	$paginator = new Paginator($number);
-	echo $paginator->getList();
+	$html .= $paginator->getList($page);
 	
     $html .= '<strong>Total documents: ' . $number . '</strong>';
     return $html;

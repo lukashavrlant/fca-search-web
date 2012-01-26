@@ -11,6 +11,7 @@ $databases = array('matweb', 'jpw', 'inf');
 <!DOCTYPE HTML>
 <meta charset="utf-8">
 <title>Chandler &mdash; FCA vyhledávač</title>
+<link rel="stylesheet" media="screen" href="styly.css">
 
 <h1><a href="./">Chandler &mdash; FCA vyhledávač</a></h1>
 
