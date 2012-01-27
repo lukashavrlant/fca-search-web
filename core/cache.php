@@ -13,7 +13,7 @@ class Cache {
 	}
 	
 	public function load($query) {
-		$name = md5($query);
+		$name = md5($this->normalizeQuery($query));
 		$filepath = $this->path . $name . '.txt';
 		if(file_exists($filepath)) {
 			return file_get_contents($filepath);
@@ -23,7 +23,7 @@ class Cache {
 	}
 	
 	public function save($query, $result) {
-		$name = md5($query);
+		$name = md5($this->normalizeQuery($query));
 		file_put_contents($this->path . $name . '.txt', $result);
 		$this->invalidate();
 	}
@@ -44,5 +44,10 @@ class Cache {
 		foreach ($oldFiles as $filename => $val) {
 			unlink($filename);
 		}
+	}
+	
+	private function normalizeQuery($query) {
+		$query = trim(strtolower($query));
+		return $query;
 	}
 }
