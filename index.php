@@ -2,7 +2,7 @@
 setlocale(LC_ALL, 'cs_CZ.utf8');
 define(ROOT, dirname(__FILE__) . '/');
 
-require_once 'core/loader.php';
+require_once 'loader.php';
 
 $query = getGETValue('query');
 $database = getGETValue('database', 'matweb');

@@ -1,6 +1,6 @@
 <?php
 
-$filenames = array('functions', 'constants', 'paginator', 'fca', 'cache', 'sresults');
+$filenames = glob('core/*'); 
 foreach ($filenames as $filename) {
-    require_once $filename . '.php';
+    require_once $filename;
 }
