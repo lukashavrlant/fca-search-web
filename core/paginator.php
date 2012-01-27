@@ -3,17 +3,17 @@ class Paginator {
 	public $onPage = 15;
 	public $showMax = 10;
 	
-	private $number;
+	private $totalLinks;
 	
-	public function __construct($number) {
-		$this->number = $number;
+	public function __construct($totalLinks) {
+		$this->totalLinks = $totalLinks;
 	}
 	
 	public function getList($currentPage) {
-		if($this->number <= $this->onPage) 
+		if($this->totalLinks <= $this->onPage) 
 			return '';
 		
-		$steps = ceil($this->number / $this->onPage);
+		$steps = ceil($this->totalLinks / $this->onPage);
 		
 		if ($steps > $this->showMax) {
 			$from = max(1, $currentPage - (int)($this->showMax / 2));
@@ -33,8 +33,7 @@ class Paginator {
 		return $html;
 	}
 	
-	private function addStep($page, $curr)
-	{
+	private function addStep($page, $curr) {
 		$href = $this->getHref($page);
 		$class = $curr ? ' class="currentpage"' : '';
 		return "<span$class><a href='$href'>$page</a></span>\n";

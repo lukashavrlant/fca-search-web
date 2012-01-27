@@ -42,18 +42,24 @@ if ($query) {
 		<div class="suggestions">
 			<?php
 				if($query) {
-					//echo '<h2>Další možnosti</h2>';
-				    $fca = getFcaExtension($jsonDecode);
-				    echo '<div>', $fca['spec'], '</div><div>', $fca['sib'], '</div>';
+					$fca = new Fca($jsonDecode);
+				   	$specStr = $fca->getSpecialization();
+				    $siblStr = $fca->getSimilar();
+				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>';
 				}
 			?>
 		</div>
 		
 		<div class="results">
 			<?php
-			if($query) {			
+			if($query) {
+				$sresults = new Sresults($jsonDecode);
+				$sresults->linksOnPage = 15;
+						
 			    echo '<h2>Search results</h2>';
-			    echo getLinksList($jsonDecode);
+   				echo $sresults->getLinksList();
+				echo $sresults->getPaginator();
+				echo '<div class="footer">Total documents: ', $sresults->totalLinks, '</div>';
 			}
 			?>
 		</div>

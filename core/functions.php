@@ -13,27 +13,6 @@ function search($query, $database, $format = 'json') {
     return $data;
 }
 
-function getLinksList($results, $page = 1, $linksCount = 15) {
-	$page = getGETValue('page', $page);
-	$from = ($page - 1) * $linksCount; 
-    $documents = $results->documents;
-    $number = count($documents);
-    $html = '<ol>';
-	
-    foreach (array_slice($documents, $from, $linksCount) as $document) {
-        $url = $document->url;
-        $title = $document->title;
-        $html .= getLink($url, $title, 'li');
-    }
-    $html .= '</ol>';
-	
-	$paginator = new Paginator($number);
-	$html .= $paginator->getList($page);
-	
-    $html .= '<div class="footer">Total documents: ' . $number . '</div>';
-    return $html;
-}
-
 function getFcaExtension($results) {   
    	$fca = new Fca($results);
    	$specStr = $fca->getSpecialization();
