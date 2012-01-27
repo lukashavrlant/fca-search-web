@@ -1,7 +1,7 @@
 <?php
 
 function search($query, $database, $format = 'json') {
-	$cache = new Cache();
+	$cache = new Cache($database);
 	$data = $cache->load($query);
 	
 	if($data)

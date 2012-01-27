@@ -5,8 +5,11 @@ class Cache {
 	
 	private $path; 
 	
-	public function __construct() {
-		$this->path = ROOT . 'cache/';
+	public function __construct($database) {
+		$this->path = ROOT . 'cache/' . $database . '/';
+		if(!file_exists($this->path)) {
+			mkdir($this->path);
+		}
 	}
 	
 	public function load($query) {
