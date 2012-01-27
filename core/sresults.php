@@ -33,6 +33,11 @@ class Sresults {
 	private function getItem($document) {
 		$url = $document->url;
         $title = $document->title;
-        return "<li><div class='item-title'><a href='$url'>$title</a></div><div class='item-url'><a href='$url'>$url</a></div></li>";
+		$description = $document->description;
+		$html = "<li><div class='item-title'><a href='$url'>$title</a></div>";
+		$html .= "<div class='item-url'><a href='$url'>$url</a></div>"; 
+		$html .= "<div class='item-description'>$description</div>";
+		
+        return $html . "</li>";
 	}
 }

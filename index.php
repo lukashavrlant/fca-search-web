@@ -7,7 +7,7 @@ require_once 'loader.php';
 $query = getGETValue('query');
 $database = getGETValue('database', 'matweb');
 
-$databases = array('matweb', 'jpw', 'inf');
+$databases = array('matweb', 'jpw', 'inf', 'small');
 
 if ($query) {
 	$searchResults = search($query, $database);
