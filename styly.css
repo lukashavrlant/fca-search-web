@@ -55,7 +55,17 @@ form.search {
 
 .results li {
 	padding: 10px 0;
-	_list-style-type: none;
+	list-style-type: none;
+}
+
+.results .item-body {
+	padding-left: 50px;
+}
+
+.results .item-score {
+	float:left;
+	font-size: 90%;
+	padding-top: 7px;
 }
 
 .results .item-title {

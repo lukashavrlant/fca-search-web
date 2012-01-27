@@ -33,10 +33,11 @@ class Sresults {
 	private function getItem($document) {
 		$url = $document->url;
         $title = $document->title;
+		$score = round($document->score, 1);
 		
 		
-		
-		$html = "<li><div class='item-title'><a href='$url'>$title</a></div>";
+		$html = "<li><div class='item-score'>$score</div><div class='item-body'>";
+		$html .= "<div class='item-title'><a href='$url'>$title</a></div>";
 		$html .= "<div class='item-url'><a href='$url'>$url</a></div>"; 
 		
 		if (isset($document->description)) {
@@ -44,6 +45,6 @@ class Sresults {
 			$html .= "<div class='item-description'>$description</div>";
 		}
 		
-        return $html . "</li>";
+        return $html . "</div></li>";
 	}
 }
