@@ -69,6 +69,11 @@ form.search {
 	text-decoration: none;
 }
 
+.steps a:hover {
+	border: 1px solid #00f;
+	color: #00f;
+}
+
 .steps .currentpage a {
 	border: none;
 	color: black;
