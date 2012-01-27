@@ -1,10 +1,14 @@
 <?php
 setlocale(LC_ALL, 'cs_CZ.utf8');
-define(ROOT, dirname(__FILE__) . '/');
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+define('ROOT', dirname(__FILE__) . '/');
 
 require_once 'loader.php';
 
-$query = getGETValue('query');
+$query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
 
 $databases = array('matweb', 'jpw', 'inf', 'small');

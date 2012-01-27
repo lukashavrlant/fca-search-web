@@ -7,7 +7,7 @@ function search($query, $database, $format = 'json') {
 	if($data)
 		return $data;
 	
-    $command = CMD . "-d $database -q \"$query\" -f $format";
+    $command = FCASEARCH . "-d $database -q \"$query\" -f $format";
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
 	$cache->save($query, $data);
     return $data;
