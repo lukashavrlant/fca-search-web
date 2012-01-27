@@ -54,9 +54,21 @@ form.search {
 }
 
 .results li {
-	padding: 5px;
-	font-size: 115%;
+	padding: 10px 0;
 	_list-style-type: none;
+}
+
+.results .item-title {
+	font-size: 115%;
+}
+
+.results .item-url {
+	font-size: 80%;
+}
+
+.results .item-url a {
+	color: green;
+	text-decoration: none;
 }
 
 .steps a {

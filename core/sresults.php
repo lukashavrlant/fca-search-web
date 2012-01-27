@@ -33,6 +33,6 @@ class Sresults {
 	private function getItem($document) {
 		$url = $document->url;
         $title = $document->title;
-        return getLink($url, $title, 'li');
+        return "<li><div class='item-title'><a href='$url'>$title</a></div><div class='item-url'><a href='$url'>$url</a></div></li>";
 	}
 }
