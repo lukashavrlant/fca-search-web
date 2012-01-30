@@ -12,6 +12,23 @@ class Cache {
 		}
 	}
 	
+	public static function clearCache($dtb) {
+		$dtb = strtolower($dtb);
+		
+		if ($dtb == '__all') {
+			$folders = glob(ROOT . 'cache/*'); 
+			foreach ($folders as $folder) {
+				self::clearCache(basename($folder));
+				rmdir($folder);
+			}
+		} else {
+			$files = glob(ROOT . 'cache/' . $dtb . '/*');
+			foreach ($files as $file) {
+				unlink($file);
+			}
+		}
+	}
+	
 	public function load($query) {
 		$name = md5($this->normalizeQuery($query));
 		$filepath = $this->path . $name . '.txt';
@@ -21,7 +38,7 @@ class Cache {
 			return false;
 		}
 	}
-	
+
 	public function save($query, $result) {
 		$name = md5($this->normalizeQuery($query));
 		file_put_contents($this->path . $name . '.txt', $result);

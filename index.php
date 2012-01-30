@@ -11,7 +11,11 @@ require_once 'loader.php';
 $query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
 
-$databases = array('matweb', 'jpw', 'inf', 'small');
+$databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
+
+if (isset($_GET['clearcache'])) {
+	Cache::clearCache($_GET['clearcache']);
+}
 
 if ($query) {
 	$searchResults = search($query, $database);
