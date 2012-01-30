@@ -6,6 +6,7 @@ class Fca {
 	private $results;
 	private $originQuery;
 	private $database;
+	private $colors;
 	
 	public function __construct($results) {
 		$this->results = $results->fca;
@@ -15,19 +16,30 @@ class Fca {
 	
 	public function getSpecialization($symbol = '+') {
 		$data = array();
-    
-	    foreach (array_slice($this->results->spec, 0, $this->maxSpec) as $sugg) {
-	        $text = $symbol . ' ' . implode(", ", $sugg);
-	        $par = array(
-	            'database' => $this->database,
-	            'query' => $this->originQuery . ' ' . implode(" ", $sugg)
-	        );
-	        
-	        $href = getHTTPQuery($par);
-	        array_push($data, getLink($href, $text));
-	    }
-	    
-	    return implode(' | ', $data);
+    	$specialization = array_slice($this->results->spec, 0, $this->maxSpec);
+		
+		if (count($specialization) > 0) {
+			$minmax = $this->getMinMax($specialization);
+			$min = $minmax['min'];
+			$max = $minmax['max'];
+			$diff = $minmax['max'] - $minmax['min'];
+			
+		    foreach ($specialization as $sugg) {
+		    	$words = $sugg->words;
+		        $text = $symbol . ' ' . implode(", ", $words);
+		        $par = array(
+		            'database' => $this->database,
+		            'query' => $this->originQuery . ' ' . implode(" ", $words)
+		        );
+		        
+		        $href = getHTTPQuery($par);
+				$class = $this->normalizeLength($sugg->length, $min, $max);
+				$link = "\n<a href='$href' class='color-$class'>$text</a>";
+		        array_push($data, $link);
+		    }
+		}
+		    
+		return implode(' | ', $data);
 	}
 	
 	public function getSimilar($symbol = "≈") {
@@ -44,5 +56,23 @@ class Fca {
 	    }
 	    
 	    return implode(' | ', $data);
+	}
+	
+	private function normalizeLength($length, $min, $max) {
+		$diff = $max - $min;
+		$norm = (($length - $diff) / ($max - $diff)) * 16;
+		return max(round($norm) - 1, 3);
+	}
+	
+	private function getMinMax($specialization) {
+		$len = count($specialization);
+		if($len > 0) {
+			return array(
+			'max' => $specialization[0]->length,
+			'min' => $specialization[$len-1]->length
+			);
+		} else {
+			return array('min' => 0, 'max' => 0);
+		}
 	}
 }
