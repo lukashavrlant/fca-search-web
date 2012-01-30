@@ -30,13 +30,19 @@ class Cache {
 	}
 	
 	public function load($query) {
-		$name = md5($this->normalizeQuery($query));
-		$filepath = $this->path . $name . '.txt';
-		if(file_exists($filepath)) {
-			return file_get_contents($filepath);
-		} else {
-			return false;
-		}
+		if ($query) {
+			$normQuery = $this->normalizeQuery($query);
+			
+			if ($normQuery[strlen($normQuery) - 1] != '!') {
+				$name = md5($normQuery);
+				$filepath = $this->path . $name . '.txt';
+				if(file_exists($filepath)) {
+					return file_get_contents($filepath);
+				}
+			}
+		} 
+		
+		return false;
 	}
 
 	public function save($query, $result) {
