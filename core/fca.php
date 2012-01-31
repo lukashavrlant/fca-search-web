@@ -34,6 +34,7 @@ class Fca {
 		        
 		        $href = getHTTPQuery($par);
 				$class = $this->normalizeLength($sugg->length, $min, $max);
+				$class = $this->normalizeLength($sugg->rank, $min, $max);
 				$link = "\n<a href='$href' class='color-$class'>$text</a>";
 		        array_push($data, $link);
 		    }
@@ -70,6 +71,8 @@ class Fca {
 			return array(
 			'max' => $specialization[0]->length,
 			'min' => $specialization[$len-1]->length
+			'max' => $specialization[0]->rank,
+			'min' => $specialization[$len-1]->rank
 			);
 		} else {
 			return array('min' => 0, 'max' => 0);
