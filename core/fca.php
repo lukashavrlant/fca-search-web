@@ -33,7 +33,6 @@ class Fca {
 		        );
 		        
 		        $href = getHTTPQuery($par);
-				$class = $this->normalizeLength($sugg->length, $min, $max);
 				$class = $this->normalizeLength($sugg->rank, $min, $max);
 				$link = "\n<a href='$href' class='color-$class'>$text</a>";
 		        array_push($data, $link);
@@ -43,7 +42,7 @@ class Fca {
 		return implode(' | ', $data);
 	}
 	
-	public function getSimilar($symbol = "≈") {
+	public function getSimilar($symbol = "±") {
 		$data = array();
     
 	    foreach (array_slice($this->results->sib, 0, $this->maxSib) as $sugg) {
@@ -69,8 +68,6 @@ class Fca {
 		$len = count($specialization);
 		if($len > 0) {
 			return array(
-			'max' => $specialization[0]->length,
-			'min' => $specialization[$len-1]->length
 			'max' => $specialization[0]->rank,
 			'min' => $specialization[$len-1]->rank
 			);
