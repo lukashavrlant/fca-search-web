@@ -110,6 +110,15 @@ form.search {
 	margin-bottom:30px;
 }
 
+.suggestions a {
+	text-decoration: none;
+}
+
+.suggestions a:hover {
+	text-decoration: underline;
+}
+
+
 .footer {
 	font-size: 80%;
 	border-top: 2px dashed #ddd;
