@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 define('ROOT', dirname(__FILE__) . '/');
+define('MIN_LINKS_TO_SHOW_SPECIALIZATION', 10);
 
 require_once 'loader.php';
 
@@ -20,6 +21,8 @@ if (isset($_GET['clearcache'])) {
 if ($query) {
 	$searchResults = search($query, $database);
     $jsonDecode = json_decode($searchResults);
+	$sresults = new Sresults($jsonDecode);
+	$sresults->linksOnPage = 15;
 }
 ?>
 <!DOCTYPE HTML>
@@ -51,9 +54,15 @@ if ($query) {
 			<?php
 				if($query) {
 					$fca = new Fca($jsonDecode);
-				   	$specStr = $fca->getSpecialization();
 				    $siblStr = $fca->getSimilar();
 					$genStr = $fca->getGeneralization();
+					
+					if($sresults->totalLinks < MIN_LINKS_TO_SHOW_SPECIALIZATION) {
+						$specStr = '';
+					} else {
+						$specStr = $fca->getSpecialization();
+					}
+										
 				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>', '<div>', $genStr, '</div>';
 				}
 			?>
@@ -61,10 +70,7 @@ if ($query) {
 		
 		<div class="results">
 			<?php
-			if($query) {
-				$sresults = new Sresults($jsonDecode);
-				$sresults->linksOnPage = 15;
-						
+			if($query) {						
 			    echo '<h2>Search results</h2>';
    				echo $sresults->getLinksList();
 				echo $sresults->getPaginator();
