@@ -22,7 +22,6 @@ class Fca {
 			$minmax = $this->getMinMax($specialization);
 			$min = $minmax['min'];
 			$max = $minmax['max'];
-			$diff = $minmax['max'] - $minmax['min'];
 			
 		    foreach ($specialization as $sugg) {
 		    	$words = $sugg->words;
@@ -44,15 +43,31 @@ class Fca {
 	
 	public function getSimilar($symbol = "±") {
 		$data = array();
-    
-	    foreach (array_slice($this->results->sib, 0, $this->maxSib) as $sugg) {
-	        $text = $symbol . ' ' . implode(', ', $sugg);
-	        $parameters = array(
-	            'query' => implode(' ', $sugg),
-	            'database' => $this->database
-	        );
-	        $href = getHTTPQuery($parameters);
-	        array_push($data, getLink($href, $text));
+    	$siblings = array_slice($this->results->sib, 0, $this->maxSib);
+	
+		if(count($siblings) > 0) {
+			
+			$minmax = $this->getMinMax($siblings);
+			$min = $minmax['min'];
+			$max = $minmax['max'];
+			
+			
+			
+		    foreach ($siblings as $sugg) {
+		    	$words = $sugg->words;
+				$rank = $sugg->rank;
+				
+		        $text = $symbol . ' ' . implode(', ', $words);
+		        $parameters = array(
+		            'query' => implode(' ', $words),
+		            'database' => $this->database
+		        );
+		        $href = getHTTPQuery($parameters);
+		        $class = $this->normalizeLength($rank, $min, $max);
+				$link = "\n<a href='$href' class='color-$class' title='similarity: $rank'>$text</a>";
+		        
+		        array_push($data, $link);
+		    }
 	    }
 	    
 	    return implode(' | ', $data);
