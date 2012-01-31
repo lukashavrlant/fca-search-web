@@ -41,7 +41,7 @@ class Fca {
 		        
 		        $href = getHTTPQuery($par);
 				$class = $this->normalizeLength($sugg->rank, $min, $max);
-				$link = "\n<a href='$href' class='color-$class'>$text</a>";
+				$link = "\n<a href='$href' class='color-$class' title='Min documents: $sugg->rank'>$text</a>";
 		        array_push($data, $link);
 		    }
 		}
