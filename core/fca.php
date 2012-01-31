@@ -2,6 +2,7 @@
 class Fca {
 	public $maxSpec = 10;
 	public $maxSib = 5;
+	public $maxGen = 5;
 	
 	private $results;
 	private $originQuery;
@@ -12,6 +13,40 @@ class Fca {
 		$this->results = $results->fca;
 		$this->originQuery = getGETValue('query');
 		$this->database = getGETValue('database', 'matweb');
+	}
+	
+	public function getGeneralization($symbol = '−') {
+		$data = array();
+    	$generalization = array_slice($this->results->gen, 0, $this->maxGen);
+		
+		if(count($generalization) > 0) {
+			foreach ($generalization as $sugg) {
+				$minmax = $this->getMinMax($generalization);
+				$min = $minmax['min'];
+				$max = $minmax['max'];
+		    	$words = $sugg->words;
+		        $text = $symbol . ' ' . implode(", ", $words);
+				
+				$newQuery = strtolower($this->originQuery);
+				foreach ($words as $word) {
+					$newQuery = str_replace(strtolower($word), '', $newQuery);
+				}
+				$newQuery = trim($newQuery);
+				$newQuery = preg_replace('/\s+/', ' ', $newQuery);
+				
+		        $par = array(
+		            'database' => $this->database,
+		            'query' => $newQuery
+		        );
+		        
+		        $href = getHTTPQuery($par);
+				$class = $this->normalizeLength($sugg->rank, $min, $max);
+				$link = "\n<a href='$href' class='color-$class'>$text</a>";
+		        array_push($data, $link);
+		    }
+		}
+		
+		return implode(' | ', $data);
 	}
 	
 	public function getSpecialization($symbol = '+') {

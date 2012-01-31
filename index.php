@@ -53,7 +53,8 @@ if ($query) {
 					$fca = new Fca($jsonDecode);
 				   	$specStr = $fca->getSpecialization();
 				    $siblStr = $fca->getSimilar();
-				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>';
+					$genStr = $fca->getGeneralization();
+				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>', '<div>', $genStr, '</div>';
 				}
 			?>
 		</div>
