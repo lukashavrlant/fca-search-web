@@ -2,6 +2,7 @@
 class Paginator {
 	public $onPage = 15;
 	public $showMax = 10;
+	public $showNextButton = true;
 	
 	private $totalLinks;
 	
@@ -25,12 +26,32 @@ class Paginator {
 		
 		$html = "<div class='steps'>\n";
 		
+		$html .= $this->getPrev($currentPage);
 		for($i=$from; $i < $to; $i++) {
 			$html .= $this->addStep($i, $i == $currentPage);
 		}
+		$html .= $this->getNext($currentPage, $steps);
 		
 		$html .= '<div class="cleaner"></div></div>';
 		return $html;
+	}
+
+	private function getPrev($currentPage) {
+		if ($currentPage > 1 && $this->showNextButton) {
+			$href = $this->getHref($currentPage - 1); 
+			return "<span><a href='$href'>« Prev «</a></span>";
+		} else {
+			return '';
+		}
+	}
+
+	private function getNext($currentPage, $totalPage) {
+		if ($currentPage < $totalPage && $this->showNextButton) {
+			$href = $this->getHref($currentPage + 1);
+			return "<span><a href='$href'>» Next »</a></span>";
+		} else {
+			return '';
+		}
 	}
 	
 	private function addStep($page, $curr) {
