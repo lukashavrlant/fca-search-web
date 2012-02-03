@@ -116,6 +116,7 @@ form.search {
 
 .suggestions a:hover {
 	text-decoration: underline;
+	color: blue;
 }
 
 
