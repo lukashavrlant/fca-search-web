@@ -72,9 +72,9 @@ if ($query) {
 			<?php
 			if($query) {						
 			    echo '<h2>Search results</h2>';
+				echo '<div class="footer">Total documents: ', $sresults->totalLinks, '</div>';
    				echo $sresults->getLinksList();
 				echo $sresults->getPaginator();
-				echo '<div class="footer">Total documents: ', $sresults->totalLinks, '</div>';
 			}
 			?>
 		</div>
