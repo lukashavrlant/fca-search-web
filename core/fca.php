@@ -3,16 +3,20 @@ class Fca {
 	public $maxSpec = 10;
 	public $maxSib = 5;
 	public $maxGen = 5;
+	public $minLinksToSpec = 8;
 	
 	private $results;
 	private $originQuery;
 	private $database;
 	private $colors;
+	private $totalLinks;
 	
-	public function __construct($results) {
+	public function __construct($results, $settings) {
 		$this->results = $results->fca;
 		$this->originQuery = getGETValue('query');
 		$this->database = getGETValue('database', 'matweb');
+		$this->applySettings($settings);
+		$this->totalLinks = count($results->documents);
 	}
 	
 	public function getGeneralization($symbol = '−') {
@@ -50,6 +54,9 @@ class Fca {
 	}
 	
 	public function getSpecialization($symbol = '+') {
+		if ($this->totalLinks < $this->minLinksToSpec)
+			return '';
+
 		$data = array();
     	$specialization = array_slice($this->results->spec, 0, $this->maxSpec);
 		
@@ -106,6 +113,13 @@ class Fca {
 	    }
 	    
 	    return implode(' | ', $data);
+	}
+
+	private function applySettings($settings) {
+		$this->minLinksToSpec = $settings->get('minLinksToShowSpecialization');
+		$this->maxSpec = $settings->get('maxSpecializationLinks');
+		$this->maxSib = $settings->get('maxSiblingsLinks');
+		$this->maxGen = $settings->get('maxGeneralizationLinks');
 	}
 	
 	private function normalizeLength($length, $min, $max) {

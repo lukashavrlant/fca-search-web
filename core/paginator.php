@@ -6,8 +6,9 @@ class Paginator {
 	
 	private $totalLinks;
 	
-	public function __construct($totalLinks) {
+	public function __construct($totalLinks, $settings) {
 		$this->totalLinks = $totalLinks;
+		$this->applySettings($settings);
 	}
 	
 	public function getList($currentPage) {
@@ -34,6 +35,12 @@ class Paginator {
 		
 		$html .= '<div class="cleaner"></div></div>';
 		return $html;
+	}
+
+	private function applySettings($settings) {
+		$this->onPage = $settings->get('linksOnOnePage');
+		$this->showMax = $settings->get('showMaxSteps');
+		$this->showNextButton = $settings->get('showNextButton');
 	}
 
 	private function getPrev($currentPage) {

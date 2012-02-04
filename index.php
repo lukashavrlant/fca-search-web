@@ -1,6 +1,5 @@
 <?php
 setlocale(LC_ALL, 'cs_CZ.utf8');
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -12,6 +11,8 @@ require_once 'loader.php';
 $query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
 
+$settings = new Settings($database);
+
 $databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
 
 if (isset($_GET['clearcache'])) {
@@ -21,8 +22,7 @@ if (isset($_GET['clearcache'])) {
 if ($query) {
 	$searchResults = search($query, $database);
     $jsonDecode = json_decode($searchResults);
-	$sresults = new Sresults($jsonDecode);
-	$sresults->linksOnPage = 15;
+	$sresults = new Sresults($jsonDecode, $settings);
 }
 ?>
 <!DOCTYPE HTML>
@@ -53,15 +53,10 @@ if ($query) {
 		<div class="suggestions">
 			<?php
 				if($query) {
-					$fca = new Fca($jsonDecode);
+					$fca = new Fca($jsonDecode, $settings);
 				    $siblStr = $fca->getSimilar();
 					$genStr = $fca->getGeneralization();
-					
-					if($sresults->totalLinks < MIN_LINKS_TO_SHOW_SPECIALIZATION) {
-						$specStr = '';
-					} else {
-						$specStr = $fca->getSpecialization();
-					}
+					$specStr = $fca->getSpecialization();
 										
 				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>', '<div>', $genStr, '</div>';
 				}

@@ -1,0 +1,12 @@
+{
+	"linksOnOnePage" : 10,
+	"roundPrecision" : 1,
+	"showMaxSteps" : 9,
+	"showNextButton" : true,
+	"showURL" : true,
+	"showDescription" : true,
+	"minLinksToShowSpecialization" : 8,
+	"maxSpecializationLinks" : 10,
+	"maxSiblingsLinks" : 5,
+	"maxGeneralizationLinks" : 5
+}
