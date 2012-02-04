@@ -36,7 +36,7 @@ if ($query) {
 	<div class="content">
 		<form method="get" class="search">
 		    <div class="searchinput">
-		    	<input type="text" size="50" name="query" value="<?=$query?>" class="in"> 
+		    	<input type="text" size="50" name="query" value="<?=htmlspecialchars($query, ENT_QUOTES)?>" class="in"> 
 		    	<input type="submit" name="search" class="ok" value="search">
 		    
 			    <select name="database">

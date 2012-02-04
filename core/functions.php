@@ -7,7 +7,8 @@ function search($query, $database, $format = 'json') {
 	if($data)
 		return $data;
 	
-    $command = FCASEARCH . "-d $database -q \"$query\" -f $format";
+    $query = escapeshellarg($query);
+    $command = FCASEARCH . "-d $database -q $query -f $format";
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
 	$cache->save($query, $data);
     return $data;
@@ -31,7 +32,7 @@ function getLink($href, $text, $wrapper = '') {
 
 function getGETValue($name, $default = '') {
     if(isset ($_GET[$name])) {
-        return htmlspecialchars($_GET[$name]);
+        return $_GET[$name];
     } else {
         return $default;
     }
