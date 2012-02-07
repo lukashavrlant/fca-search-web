@@ -11,7 +11,8 @@ require_once 'loader.php';
 $query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
 
-$settings = new Settings($database);
+// $settings = new Settings($database);
+Settings::loadSettings();
 
 $databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
 
@@ -22,7 +23,7 @@ if (isset($_GET['clearcache'])) {
 if ($query) {
 	$searchResults = search($query, $database);
     $jsonDecode = json_decode($searchResults);
-	$sresults = new Sresults($jsonDecode, $settings);
+	$sresults = new Sresults($jsonDecode);
 }
 ?>
 <!DOCTYPE HTML>
@@ -53,7 +54,7 @@ if ($query) {
 		<div class="suggestions">
 			<?php
 				if($query) {
-					$fca = new Fca($jsonDecode, $settings);
+					$fca = new Fca($jsonDecode);
 				    $siblStr = $fca->getSimilar();
 					$genStr = $fca->getGeneralization();
 					$specStr = $fca->getSpecialization();

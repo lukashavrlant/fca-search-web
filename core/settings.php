@@ -1,24 +1,30 @@
 <?php
 class Settings
 {
-	private $settings;
-	private $defaultSettings;
+	private static $settings;
+	private static $defaultSettings;
 
-	public function __construct() {
+	// public function __construct() {
+	// 	$string = file_get_contents(ROOT . 'settings.json');
+	// 	$this->settings = json_decode($string);
+	// 	$this->initDefaultSettings();
+	// }
+
+	public static function loadSettings() {
 		$string = file_get_contents(ROOT . 'settings.json');
-		$this->settings = json_decode($string);
-		$this->initDefaultSettings();
+		self::$settings = json_decode($string);
+		self::initDefaultSettings();
 	}
 
-	public function get($key) {
-		if (isset($this->settings->$key))
-			return $this->settings->$key;
+	public static function get($key) {
+		if (isset(self::$settings->$key))
+			return self::$settings->$key;
 		else
-			return $this->defaultSettings[$key];
+			return self::$defaultSettings[$key];
 	}
 
 	private function initDefaultSettings() {
-		$this->defaultSettings = array(
+		self::$defaultSettings = array(
 				"linksOnOnePage" => 15,
 				"roundPrecision" => 1,
 				"showMaxSteps" => 9,
@@ -31,4 +37,6 @@ class Settings
 				"maxGeneralizationLinks" => 5
 			);
 	}
+
+	
 }

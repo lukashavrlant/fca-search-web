@@ -10,12 +10,11 @@ class Sresults {
 	private $roundPrecision;
 	private $settings;
 	
-	public function __construct($results, $settings, $page = 1) {
+	public function __construct($results, $page = 1) {
 		$this->documents = $results->documents;
 		$this->totalLinks = count($this->documents);
 		$this->currentPage = getGETValue('page', $page);
-		$this->settings = $settings;
-		$this->applySettings($settings);
+		$this->applySettings();
 	}
 	
 	public function getLinksList() {
@@ -36,11 +35,11 @@ class Sresults {
 		return $steps;
 	}
 
-	private function applySettings($settings) {
-		$this->linksOnPage = $settings->get('linksOnOnePage');
-		$this->roundPrecision = $settings->get('roundPrecision');
-		$this->showURL = $settings->get('showURL');
-		$this->showDescription = $settings->get('showDescription');
+	private function applySettings() {
+		$this->linksOnPage = Settings::get('linksOnOnePage');
+		$this->roundPrecision = Settings::get('roundPrecision');
+		$this->showURL = Settings::get('showURL');
+		$this->showDescription = Settings::get('showDescription');
 	}
 	
 	private function getItem($document) {

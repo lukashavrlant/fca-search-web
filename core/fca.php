@@ -11,11 +11,11 @@ class Fca {
 	private $colors;
 	private $totalLinks;
 	
-	public function __construct($results, $settings) {
+	public function __construct($results) {
 		$this->results = $results->fca;
 		$this->originQuery = getGETValue('query');
 		$this->database = getGETValue('database', 'matweb');
-		$this->applySettings($settings);
+		$this->applySettings();
 		$this->totalLinks = count($results->documents);
 	}
 	
@@ -115,11 +115,11 @@ class Fca {
 	    return implode(' | ', $data);
 	}
 
-	private function applySettings($settings) {
-		$this->minLinksToSpec = $settings->get('minLinksToShowSpecialization');
-		$this->maxSpec = $settings->get('maxSpecializationLinks');
-		$this->maxSib = $settings->get('maxSiblingsLinks');
-		$this->maxGen = $settings->get('maxGeneralizationLinks');
+	private function applySettings() {
+		$this->minLinksToSpec = Settings::get('minLinksToShowSpecialization');
+		$this->maxSpec = Settings::get('maxSpecializationLinks');
+		$this->maxSib = Settings::get('maxSiblingsLinks');
+		$this->maxGen = Settings::get('maxGeneralizationLinks');
 	}
 	
 	private function normalizeLength($length, $min, $max) {

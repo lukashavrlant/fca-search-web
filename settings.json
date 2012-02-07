@@ -8,5 +8,6 @@
 	"minLinksToShowSpecialization" : 8,
 	"maxSpecializationLinks" : 10,
 	"maxSiblingsLinks" : 5,
-	"maxGeneralizationLinks" : 5
+	"maxGeneralizationLinks" : 5,
+	"useCache" : true
 }

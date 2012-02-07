@@ -2,10 +2,12 @@
 class Cache {
 	public $minQueries = 100;
 	public $maxQueries = 200; 
+	public $useCache;
 	
 	private $path; 
 	
 	public function __construct($database) {
+		$this->applySettings();
 		$this->path = ROOT . 'cache/' . $database . '/';
 		if(!file_exists($this->path)) {
 			mkdir($this->path);
@@ -30,7 +32,7 @@ class Cache {
 	}
 	
 	public function load($query) {
-		if ($query) {
+		if ($query && $this->useCache) {
 			$normQuery = $this->normalizeQuery($query);
 			
 			if ($normQuery[strlen($normQuery) - 1] != '!') {
@@ -46,9 +48,15 @@ class Cache {
 	}
 
 	public function save($query, $result) {
-		$name = md5($this->normalizeQuery($query));
-		file_put_contents($this->path . $name . '.txt', $result);
-		$this->invalidate();
+		if ($this->useCache) {
+			$name = md5($this->normalizeQuery($query));
+			file_put_contents($this->path . $name . '.txt', $result);
+			$this->invalidate();
+		}
+	}
+
+	private function applySettings() {
+		$this->useCache = Settings::get('useCache');
 	}
 	
 	private function invalidate() {
