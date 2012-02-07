@@ -32,6 +32,7 @@ class Cache {
 	}
 	
 	public function load($query) {
+
 		if ($query && $this->useCache) {
 			$normQuery = $this->normalizeQuery($query);
 			
@@ -49,7 +50,8 @@ class Cache {
 
 	public function save($query, $result) {
 		if ($this->useCache) {
-			$name = md5($this->normalizeQuery($query));
+			$normQuery = $this->normalizeQuery($query);
+			$name = md5($normQuery);
 			file_put_contents($this->path . $name . '.txt', $result);
 			$this->invalidate();
 		}

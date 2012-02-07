@@ -22,8 +22,8 @@ if (isset($_GET['clearcache'])) {
 
 if ($query) {
 	$searchResults = search($query, $database);
-    $jsonDecode = json_decode($searchResults);
-	$sresults = new Sresults($jsonDecode);
+    // $jsonDecode = json_decode($searchResults);
+	$sresults = new Sresults($searchResults);
 }
 ?>
 <!DOCTYPE HTML>
@@ -54,7 +54,7 @@ if ($query) {
 		<div class="suggestions">
 			<?php
 				if($query) {
-					$fca = new Fca($jsonDecode);
+					$fca = new Fca($searchResults);
 				    $siblStr = $fca->getSimilar();
 					$genStr = $fca->getGeneralization();
 					$specStr = $fca->getSpecialization();
@@ -68,7 +68,8 @@ if ($query) {
 			<?php
 			if($query) {						
 			    echo '<h2>Search results</h2>';
-				echo '<div class="footer">Total documents: ', $sresults->totalLinks, '</div>';
+				// echo '<div class="meta">Total documents: ', $sresults->totalLinks, '</div>';
+				echo $sresults->getMetaInfo();
    				echo $sresults->getLinksList();
 				echo $sresults->getPaginator();
 			}

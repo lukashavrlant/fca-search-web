@@ -9,12 +9,24 @@ class Sresults {
 	private $currentPage;
 	private $roundPrecision;
 	private $settings;
+	private $meta;
 	
 	public function __construct($results, $page = 1) {
 		$this->documents = $results->documents;
+		$this->meta = $results->meta;
 		$this->totalLinks = count($this->documents);
 		$this->currentPage = getGETValue('page', $page);
 		$this->applySettings();
+	}
+
+	public function getMetaInfo() {
+		$time = round($this->meta->time, 4);
+		$showTime = $time == 0 ? '0 (cache)' : $time . " s";
+		$html = "<div class='meta'>";
+		$html .= "Total documents: $this->totalLinks, ";
+		$html .= "search time: " . $showTime;
+		$html .= "</div>";
+		return $html;
 	}
 	
 	public function getLinksList() {

@@ -131,6 +131,10 @@ form.search {
 	font-size:90%;
 }
 
+.meta {
+	font-size: 80%;
+}
+
 .color-0{ color: #ffffff;}
 .color-1{ color: #eeeeff;}
 .color-2{ color: #ddddff;}

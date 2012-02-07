@@ -4,14 +4,17 @@ function search($query, $database, $format = 'json') {
 	$cache = new Cache($database);
 	$data = $cache->load($query);
 	
-	if($data)
-		return $data;
+	if($data) {
+        $json = json_decode($data);
+        $json->meta->time = 0;
+		return $json;
+    }
 	
-    $query = escapeshellarg($query);
-    $command = FCASEARCH . "-d $database -q $query -f $format";
+    $espacedQuery = escapeshellarg($query);
+    $command = FCASEARCH . "-d $database -q $espacedQuery -f $format";
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
 	$cache->save($query, $data);
-    return $data;
+    return json_decode($data);
 }
 
 function getFcaExtension($results) {   
