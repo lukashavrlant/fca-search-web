@@ -10,10 +10,12 @@ class Sresults {
 	private $roundPrecision;
 	private $settings;
 	private $meta;
+	private $spellcheck;
 	
 	public function __construct($results, $page = 1) {
 		$this->documents = $results->documents;
 		$this->meta = $results->meta;
+		$this->spellcheck = (array)$results->spellcheck;
 		$this->totalLinks = count($this->documents);
 		$this->currentPage = getGETValue('page', $page);
 		$this->applySettings();
@@ -26,27 +28,53 @@ class Sresults {
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ", ";
 		$html .= "context objects: " . $this->meta->objects . ", ";
-		$html .= "attributes: " . $this->meta->attributes . ", ";
+		$html .= "attributes: " . $this->meta->attributes;
 		$html .= "</div>";
 		return $html;
 	}
 	
 	public function getLinksList() {
-		$from = ($this->currentPage - 1) * $this->linksOnPage; 
-		
-	    $html = '<ol>';
-	    foreach (array_slice($this->documents, $from, $this->linksOnPage) as $document) {
-	        $html .= $this->getItem($document);
-	    }
-	    $html .= '</ol>';
-		
-	    return $html;
+		if ($this->totalLinks == 0) {
+			return '';
+		} else {
+			$from = ($this->currentPage - 1) * $this->linksOnPage; 
+			
+		    $html = '<ol>';
+		    foreach (array_slice($this->documents, $from, $this->linksOnPage) as $document) {
+		        $html .= $this->getItem($document);
+		    }
+		    $html .= '</ol>';
+			
+		    return $html;
+		}
 	}
 	
 	public function getPaginator() {
 		$paginator = new Paginator($this->totalLinks, $this->settings);
 		$steps = $paginator->getList($this->currentPage);
 		return $steps;
+	}
+
+	public function getSpellSuggestions($query) {
+		if ($this->totalLinks == 0) {
+			$suggLinkQuery = $this->replaceMismatch($query);
+			$suggQuery = $this->replaceMismatch($query, true);
+			$parameters = array('query' => $suggLinkQuery);
+			$href = getHTTPQuery($parameters);
+			return "Did you mean „<a href='$href'>$suggQuery</a>”?";
+		} else {
+			return '';
+		}
+	}
+
+	private function replaceMismatch($query, $wrapper = false) {
+		foreach ($this->spellcheck as $key => $value) {
+			if ($wrapper) 
+				$query = str_replace($key, "<b><i>" . $value . "</i></b>", $query);
+			else
+				$query = str_replace($key, $value, $query);
+		}
+		return $query;
 	}
 
 	private function applySettings() {
