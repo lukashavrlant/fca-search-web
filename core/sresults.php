@@ -13,6 +13,7 @@ class Sresults {
 	private $spellcheck;
 	
 	public function __construct($results, $page = 1) {
+		// var_dump($results);
 		$this->documents = $results->documents;
 		$this->meta = $results->meta;
 		$this->spellcheck = (array)$results->spellcheck;
@@ -56,7 +57,7 @@ class Sresults {
 	}
 
 	public function getSpellSuggestions($query) {
-		if ($this->totalLinks == 0) {
+		if ($this->totalLinks == 0 && count($this->spellcheck) > 0) {
 			$suggLinkQuery = $this->replaceMismatch($query);
 			$suggQuery = $this->replaceMismatch($query, true);
 			$parameters = array('query' => $suggLinkQuery);
