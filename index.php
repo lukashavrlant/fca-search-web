@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 
 define('ROOT', dirname(__FILE__) . '/');
 define('MIN_LINKS_TO_SHOW_SPECIALIZATION', 10);
+define('LOCALHOST', $_SERVER['HTTP_HOST'] == 'localhost');
 
 require_once 'loader.php';
 
@@ -13,7 +14,10 @@ $database = getGETValue('database', 'matweb');
 
 Settings::loadSettings();
 
-$databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
+if (LOCALHOST)
+	$databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
+else 
+	$databases = array('jpw');
 
 if (isset($_GET['clearcache'])) {
 	Cache::clearCache($_GET['clearcache']);
