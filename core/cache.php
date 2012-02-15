@@ -59,6 +59,8 @@ class Cache {
 
 	private function applySettings() {
 		$this->useCache = Settings::get('useCache');
+		$this->minQueries = Settings::get('minCacheQueries');
+		$this->maxQueries = Settings::get('maxCacheQueries');
 	}
 	
 	private function invalidate() {
