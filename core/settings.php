@@ -34,7 +34,10 @@ class Settings
 				"minLinksToShowSpecialization" => 8,
 				"maxSpecializationLinks" => 10,
 				"maxSiblingsLinks" => 5,
-				"maxGeneralizationLinks" => 5
+				"maxGeneralizationLinks" => 5,
+				"useCache" => true,
+				"minCacheQueries" => 200,
+				"maxCacheQueries" => 500
 			);
 	}
 
