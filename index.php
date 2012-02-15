@@ -11,7 +11,6 @@ require_once 'loader.php';
 $query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
 
-// $settings = new Settings($database);
 Settings::loadSettings();
 
 $databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
