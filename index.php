@@ -22,7 +22,6 @@ if (isset($_GET['clearcache'])) {
 
 if ($query) {
 	$searchResults = search($query, $database);
-    // $jsonDecode = json_decode($searchResults);
 	$sresults = new Sresults($searchResults);
 }
 ?>
