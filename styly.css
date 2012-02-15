@@ -26,7 +26,8 @@ h1 {
 
 h1 a {
 	text-decoration: none;
-	color: #1026CC;
+	/*color: #1026CC;*/
+	color: black;
 }
 
 form.search {
