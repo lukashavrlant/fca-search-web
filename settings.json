@@ -9,5 +9,7 @@
 	"maxSpecializationLinks" : 10,
 	"maxSiblingsLinks" : 5,
 	"maxGeneralizationLinks" : 5,
-	"useCache" : true
+	"useCache" : true,
+	"minCacheQueries" : 200,
+	"maxCacheQueries" : 500
 }
