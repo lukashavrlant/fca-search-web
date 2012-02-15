@@ -60,7 +60,8 @@ class Sresults {
 		if ($this->totalLinks == 0 && count($this->spellcheck) > 0) {
 			$suggLinkQuery = $this->replaceMismatch($query);
 			$suggQuery = $this->replaceMismatch($query, true);
-			$parameters = array('query' => $suggLinkQuery);
+			$parameters = $_GET;
+			$parameters['query'] = $suggLinkQuery;
 			$href = getHTTPQuery($parameters);
 			return "Did you mean „<a href='$href'>$suggQuery</a>”?";
 		} else {
