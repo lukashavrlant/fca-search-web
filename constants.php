@@ -5,7 +5,7 @@ if (LOCALHOST) {
 	$python3 = '/Library/Frameworks/Python.framework/Versions/3.2/bin/python3 ';
 } else {
 	$fcasearch = '/home/havrlanl/Chandler/src/search ';
-	$python = '/home/havrlanl/python-3.2.2/bin/python3 ';
+	$python3 = '/home/havrlanl/python-3.2.2/bin/python3 ';
 }
 
 
