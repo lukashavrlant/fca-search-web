@@ -17,7 +17,7 @@ Settings::loadSettings();
 if (LOCALHOST)
 	$databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
 else 
-	$databases = array('jpwi');
+	$databases = array('inf', 'jpwi');
 
 if (isset($_GET['clearcache'])) {
 	Cache::clearCache($_GET['clearcache']);
