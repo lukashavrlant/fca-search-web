@@ -15,9 +15,9 @@ $database = getGETValue('database', 'matweb');
 Settings::loadSettings();
 
 if (LOCALHOST)
-	$databases = array('matweb', 'jpw', 'inf', 'small', 'dia');
+	$databases = array('matweb', 'jpw', 'inf', 'small', 'jakpodnikat');
 else 
-	$databases = array('inf', 'jpwi');
+	$databases = array('inf', 'jpwi', 'jakpodnikat');
 
 if (isset($_GET['clearcache'])) {
 	Cache::clearCache($_GET['clearcache']);
