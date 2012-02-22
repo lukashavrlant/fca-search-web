@@ -39,7 +39,8 @@ class Settings
 			"minCacheQueries" => 200,
 			"maxCacheQueries" => 500,
 			"maxTitleLength" => 80,
-			"maxURLLength" => 100
+			"maxURLLength" => 100,
+			"maxDescriptionLength" => 255
 		);
 	}
 

@@ -122,6 +122,13 @@ class Sresults {
 		$url = htmlspecialchars($url);
 		return $url;
 	}
+
+	private function espaceDesc($desc)
+	{
+		$desc = $this->cropText($desc, Settings::get('maxDescriptionLength'));
+		$desc = htmlspecialchars($desc);
+		return $desc;
+	}
 	
 	private function getItem($document) {
 		$url = $document->url;
@@ -137,7 +144,7 @@ class Sresults {
 			$html .= "<div class='item-url'><a href='$url'>$esurl</a></div>"; 
 		
 		if (isset($document->description) && $this->showDescription) {
-			$description = htmlspecialchars($document->description);
+			$description = $this->espaceDesc($document->description);
 			$html .= "<div class='item-description'>$description</div>";
 		}
 		
