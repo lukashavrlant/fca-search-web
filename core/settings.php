@@ -25,20 +25,20 @@ class Settings
 
 	private function initDefaultSettings() {
 		self::$defaultSettings = array(
-				"linksOnOnePage" => 15,
-				"roundPrecision" => 1,
-				"showMaxSteps" => 9,
-				"showNextButton" => true,
-				"showURL" => true,
-				"showDescription" => true,
-				"minLinksToShowSpecialization" => 8,
-				"maxSpecializationLinks" => 10,
-				"maxSiblingsLinks" => 5,
-				"maxGeneralizationLinks" => 5,
-				"useCache" => true,
-				"minCacheQueries" => 200,
-				"maxCacheQueries" => 500
-			);
+			"linksOnOnePage" => 15,
+			"roundPrecision" => 1,
+			"showMaxSteps" => 9,
+			"showNextButton" => true,
+			"showURL" => true,
+			"showDescription" => true,
+			"minLinksToShowSpecialization" => 8,
+			"maxSpecializationLinks" => 10,
+			"maxSiblingsLinks" => 5,
+			"maxGeneralizationLinks" => 5,
+			"useCache" => true,
+			"minCacheQueries" => 200,
+			"maxCacheQueries" => 500
+		);
 	}
 
 	

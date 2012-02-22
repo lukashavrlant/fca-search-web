@@ -75,7 +75,7 @@ class Fca {
 		        
 		        $href = getHTTPQuery($par);
 				$class = $this->normalizeLength($sugg->rank, $min, $max);
-				$link = "\n<a href='$href' class='color-$class'>$text</a>";
+				$link = "\n<a href='$href' title='Min documents: $sugg->rank' class='color-$class'>$text</a>";
 		        array_push($data, $link);
 		    }
 		}
@@ -106,7 +106,7 @@ class Fca {
 		        );
 		        $href = getHTTPQuery($parameters);
 		        $class = $this->normalizeLength($rank, $min, $max);
-				$link = "\n<a href='$href' class='color-$class' title='similarity: $rank'>$text</a>";
+				$link = "\n<a href='$href' class='color-$class' title='Similarity: $rank'>$text</a>";
 		        
 		        array_push($data, $link);
 		    }
