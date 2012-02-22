@@ -13,7 +13,6 @@ class Sresults {
 	private $spellcheck;
 	
 	public function __construct($results, $page = 1) {
-		// var_dump($results);
 		$this->documents = $results->documents;
 		$this->meta = $results->meta;
 		$this->spellcheck = (array)$results->spellcheck;
@@ -88,7 +87,7 @@ class Sresults {
 	
 	private function getItem($document) {
 		$url = $document->url;
-        $title = $document->title;
+        $title = htmlspecialchars($document->title);
 		$score = round($document->score, $this->roundPrecision);
 		
 		
@@ -99,7 +98,7 @@ class Sresults {
 			$html .= "<div class='item-url'><a href='$url'>$url</a></div>"; 
 		
 		if (isset($document->description) && $this->showDescription) {
-			$description = $document->description;
+			$description = htmlspecialchars($document->description);
 			$html .= "<div class='item-description'>$description</div>";
 		}
 		
