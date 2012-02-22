@@ -25,7 +25,12 @@ if (isset($_GET['clearcache'])) {
 
 if ($query) {
 	$searchResults = search($query, $database);
-	$sresults = new Sresults($searchResults);
+
+	if ($searchResults) {
+		$sresults = new Sresults($searchResults);
+	} else {
+		error_log($query . "\n", 3, "errors.log");
+	}
 }
 ?>
 <!DOCTYPE HTML>
@@ -55,7 +60,7 @@ if ($query) {
 		
 		<div class="suggestions">
 			<?php
-				if($query) {
+				if($query && $searchResults) {
 					$fca = new Fca($searchResults);
 				    $siblStr = $fca->getSimilar();
 					$genStr = $fca->getGeneralization();
@@ -68,7 +73,7 @@ if ($query) {
 		
 		<div class="results">
 			<?php
-			if($query) {
+			if($query && $searchResults) {
 				echo $sresults->getSpellSuggestions($query);						
 			    echo '<h2>Search results</h2>';
 				// echo '<div class="meta">Total documents: ', $sresults->totalLinks, '</div>';
@@ -78,5 +83,11 @@ if ($query) {
 			}
 			?>
 		</div>
+
+		<?php 
+		if ($query && !$searchResults) {
+			echo '<div class="error">Something went terribly wrong... Try different query.</div>';
+		}
+		?>
 	</div>
 </div>

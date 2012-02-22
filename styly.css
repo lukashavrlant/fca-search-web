@@ -136,6 +136,17 @@ form.search {
 	font-size: 80%;
 }
 
+.error {
+	border: 1px solid red;
+	padding:5px;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	background-color: #fcc;
+	color: red;
+}
+
 .color-0{ color: #ffffff;}
 .color-1{ color: #eeeeff;}
 .color-2{ color: #ddddff;}
