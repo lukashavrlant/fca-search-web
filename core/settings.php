@@ -37,7 +37,9 @@ class Settings
 			"maxGeneralizationLinks" => 5,
 			"useCache" => true,
 			"minCacheQueries" => 200,
-			"maxCacheQueries" => 500
+			"maxCacheQueries" => 500,
+			"maxTitleLength" => 80,
+			"maxURLLength" => 100
 		);
 	}
 

@@ -84,10 +84,49 @@ class Sresults {
 		$this->showURL = Settings::get('showURL');
 		$this->showDescription = Settings::get('showDescription');
 	}
+
+	private function cropText($text, $maxLength)
+	{
+		if (strlen($text) > $maxLength) {
+			$crop = substr($text, 0, $maxLength);
+			if ($text[$maxLength] == ' ' || $text[$maxLength-1] == ' ') {
+				return trim($crop) . '…';
+			} else {
+				$cropArr = explode(' ', $crop);
+				$cropArr = array_slice($cropArr, 0, count($cropArr) - 1);
+				$lowerCrop = implode(' ', $cropArr);
+				if (strlen($lowerCrop) < (strlen($crop) / 2)) {
+					return trim($crop) . '…';
+				} else {
+					return trim($lowerCrop) . '…';
+				}
+			}
+		} else {
+			return $text;
+		}
+	}
+
+	private function escapeTitle($title)
+	{
+		$title = $this->cropText($title, Settings::get('maxTitleLength'));
+		$title = htmlspecialchars($title);
+		return $title;
+	}
+
+	private function espaceURL($url)
+	{
+		$maxLength = Settings::get('maxURLLength');
+		if (strlen($url) > $maxLength) {
+			$url = substr($url, 0, $maxLength - 5) . '…';
+		}
+		$url = htmlspecialchars($url);
+		return $url;
+	}
 	
 	private function getItem($document) {
 		$url = $document->url;
-        $title = htmlspecialchars($document->title);
+		$esurl = $this->espaceURL($document->url);
+        $title = $this->escapeTitle($document->title);
 		$score = round($document->score, $this->roundPrecision);
 		
 		
@@ -95,7 +134,7 @@ class Sresults {
 		$html .= "<div class='item-title'><a href='$url'>$title</a></div>";
 
 		if ($this->showURL)
-			$html .= "<div class='item-url'><a href='$url'>$url</a></div>"; 
+			$html .= "<div class='item-url'><a href='$url'>$esurl</a></div>"; 
 		
 		if (isset($document->description) && $this->showDescription) {
 			$description = htmlspecialchars($document->description);
