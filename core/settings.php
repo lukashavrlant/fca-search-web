@@ -40,7 +40,8 @@ class Settings
 			"maxCacheQueries" => 500,
 			"maxTitleLength" => 80,
 			"maxURLLength" => 100,
-			"maxDescriptionLength" => 255
+			"maxDescriptionLength" => 255,
+			"maxWordsInSiblings" => 4
 		);
 	}
 

@@ -85,7 +85,16 @@ class Fca {
 	
 	public function getSimilar($symbol = "±") {
 		$data = array();
-    	$siblings = array_slice($this->results->sib, 0, $this->maxSib);
+
+		$sibl = array();
+
+		foreach ($this->results->sib as $sib) {
+			if(count($sib->words) <= Settings::get('maxWordsInSiblings')) {
+				$sibl[] = $sib;
+			}
+		}
+
+    	$siblings = array_slice($sibl, 0, $this->maxSib);
 	
 		if(count($siblings) > 0) {
 			
