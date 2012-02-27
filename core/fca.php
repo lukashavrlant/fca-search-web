@@ -20,6 +20,9 @@ class Fca {
 	}
 	
 	public function getGeneralization($symbol = '−') {
+		if(!Settings::get('showGeneralization')) {
+			return '';
+		}
 		$data = array();
     	$generalization = array_slice($this->results->gen, 0, $this->maxGen);
 		
@@ -54,6 +57,10 @@ class Fca {
 	}
 	
 	public function getSpecialization($symbol = '+') {
+		if(!Settings::get('showSpecialization')) {
+			return '';
+		}
+
 		if ($this->totalLinks < $this->minLinksToSpec)
 			return '';
 
@@ -84,6 +91,9 @@ class Fca {
 	}
 	
 	public function getSimilar($symbol = "±") {
+		if(!Settings::get('showSiblings')) {
+			return '';
+		}
 		$data = array();
 
 		$sibl = array();

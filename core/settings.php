@@ -41,7 +41,10 @@ class Settings
 			"maxTitleLength" => 80,
 			"maxURLLength" => 100,
 			"maxDescriptionLength" => 255,
-			"maxWordsInSiblings" => 4
+			"maxWordsInSiblings" => 4,
+			"showSpecialization" => true,
+			"showGeneralization" => true,
+			"showSiblings" => true,
 		);
 	}
 

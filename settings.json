@@ -1,8 +1,5 @@
 {
 	"linksOnOnePage" : 10,
-	"roundPrecision" : 1,
-	"showMaxSteps" : 9,
-	"showNextButton" : true,
 	"showURL" : true,
 	"showDescription" : true,
 	"minLinksToShowSpecialization" : 8,
@@ -10,10 +7,17 @@
 	"maxSiblingsLinks" : 5,
 	"maxGeneralizationLinks" : 5,
 	"useCache" : true,
+	"maxWordsInSiblings" : 4,
+	"showSpecialization" : true,
+	"showGeneralization" : true,
+	"showSiblings" : true,
+
+	"roundPrecision" : 1,
+	"showMaxSteps" : 9,
+	"showNextButton" : true,
 	"minCacheQueries" : 200,
 	"maxCacheQueries" : 500,
 	"maxTitleLength" : 80,
 	"maxURLLength" : 100,
-	"maxDescriptionLength" : 255,
-	"maxWordsInSiblings" : 4
+	"maxDescriptionLength" : 255
 }

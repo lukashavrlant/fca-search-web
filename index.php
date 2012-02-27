@@ -76,7 +76,6 @@ if ($query) {
 			if($query && $searchResults) {
 				echo $sresults->getSpellSuggestions($query);						
 			    echo '<h2>Search results</h2>';
-				// echo '<div class="meta">Total documents: ', $sresults->totalLinks, '</div>';
 				echo $sresults->getMetaInfo();
    				echo $sresults->getLinksList();
 				echo $sresults->getPaginator();
