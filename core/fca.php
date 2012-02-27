@@ -133,7 +133,7 @@ class Fca {
 	
 	private function normalizeLength($length, $min, $max) {
 		$diff = $max - $min;
-		$norm = (($length - $diff) / ($max - $diff)) * 16;
+		$norm = (($length - $min) / $diff) * 16;
 		return max(round($norm) - 1, 3);
 	}
 	
