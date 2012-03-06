@@ -117,9 +117,19 @@ form.search {
 
 .suggestions a:hover {
 	text-decoration: underline;
-	color: blue;
 }
 
+.suggestions .sibl-sugg a:hover {
+	color: #FB0;
+}
+
+.suggestions .spec-sugg a:hover {
+	color: #070;
+}
+
+.suggestions .gen-sugg a:hover {
+	color: #F00;
+}
 
 .footer {
 	font-size: 80%;
@@ -164,10 +174,49 @@ form.search {
 .color-14{ color: #1111ff;}
 .color-15{ color: #0000ff;}
 
+.gen-color-3 {color:  #ffc9c9;}
+.gen-color-4 {color:  #ffc3c3;}
+.gen-color-5 {color:  #ffbaba;}
+.gen-color-6 {color:  #ffb6b6;}
+.gen-color-7 {color:  #ffb0b0;}
+.gen-color-8 {color:  #ffa8a8;}
+.gen-color-9 {color:  #ffa0a0;}
+.gen-color-10 {color:  #ff9898;}
+.gen-color-11 {color:  #f88;}
+.gen-color-12 {color:  #f66;}
+.gen-color-13 {color:  #f44;}
+.gen-color-14 {color:  #f22;}
+.gen-color-15 {color:  #f00;}
 
 
+.sibl-color-3 {color:  #ffe0b8;}
+.sibl-color-4 {color:  #ffdcb0;}
+.sibl-color-5 {color:  #ffd6a8;}
+.sibl-color-6 {color:  #ffd0a0;}
+.sibl-color-7 {color:  #ffcc98;}
+.sibl-color-8 {color:  #ffc690;}
+.sibl-color-9 {color:  #ffc088;}
+.sibl-color-10 {color:  #fb8;}
+.sibl-color-11 {color:  #fb7;}
+.sibl-color-12 {color:  #fb6;}
+.sibl-color-13 {color:  #fb4;}
+.sibl-color-14 {color:  #fb2;}
+.sibl-color-15 {color:  #fb0;}
 
 
+.spec-color-3 {color:  #B8D6B8;}
+.spec-color-4 {color:  #B0D0B0;}
+.spec-color-5 {color:  #A8CAA9;}
+.spec-color-6 {color:  #A0C6A0;}
+.spec-color-7 {color:  #98C098;}
+.spec-color-8 {color:  #90BA90;}
+.spec-color-9 {color:  #88B688;}
+.spec-color-10 {color:  #80B080;}
+.spec-color-11 {color:  #7A7;}
+.spec-color-12 {color:  #696;}
+.spec-color-13 {color:  #484;}
+.spec-color-14 {color:  #282;}
+.spec-color-15 {color:  #070;}
 
 
 

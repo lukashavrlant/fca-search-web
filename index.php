@@ -66,7 +66,7 @@ if ($query) {
 					$genStr = $fca->getGeneralization();
 					$specStr = $fca->getSpecialization();
 										
-				    echo '<div>', $specStr, '</div><div>', $siblStr, '</div>', '<div>', $genStr, '</div>';
+				    echo "<div class='spec-sugg'>", $specStr, "\n</div>\n<div class='spec-sugg'>", $siblStr, "\n</div>\n", '<div class="spec-sugg">', $genStr, '</div>';
 				}
 			?>
 		</div>
