@@ -12,7 +12,7 @@
 	"showGeneralization" : true,
 	"showSiblings" : true,
 
-	"roundPrecision" : 1,
+	"roundPrecision" : 3,
 	"showMaxSteps" : 9,
 	"showNextButton" : true,
 	"minCacheQueries" : 200,
