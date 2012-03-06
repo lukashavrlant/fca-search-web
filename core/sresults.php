@@ -28,7 +28,10 @@ class Sresults {
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ", ";
 		$html .= "context objects: " . $this->meta->objects . ", ";
-		$html .= "attributes: " . $this->meta->attributes;
+		$html .= "attributes: " . $this->meta->attributes . ", ";
+		$html .= "lower concepts: " . $this->meta->lower . ", ";
+		$html .= "upper: " . $this->meta->upper . ", ";
+		$html .= "neighbor: " . $this->meta->neighbor;
 		$html .= "</div>";
 		return $html;
 	}
