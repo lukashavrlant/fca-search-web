@@ -24,7 +24,7 @@ class Sresults {
 	public function getMetaInfo() {
 		$time = round($this->meta->time, 4);
 		$showTime = $time == 0 ? '0 (cache)' : $time . " s";
-		$html = "<div class='meta'>";
+		$html = "<div class='meta'>\n";
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ", ";
 		$html .= "context objects: " . $this->meta->objects . ", ";
