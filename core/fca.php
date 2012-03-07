@@ -27,6 +27,8 @@ class Fca {
     	$generalization = array_slice($this->results->gen, 0, $this->maxGen);
 		
 		if(count($generalization) > 0) {
+
+			$classID = 15;
 			foreach ($generalization as $sugg) {
 				$minmax = $this->getMinMax($generalization);
 				$min = $minmax['min'];
@@ -47,8 +49,9 @@ class Fca {
 		        );
 		        
 		        $href = getHTTPQuery($par);
-				$class = $this->normalizeLength($sugg->rank, $min, $max);
-				$link = "\n<a href='$href' class='gen-color-$class' title='Min documents: $sugg->rank'>$text</a>";
+				$link = "\n<a href='$href' class='gen-color-$classID' title='Min documents: $sugg->rank'>$text</a>";
+				$classID -= 3;
+				$classID = max(3, $classID);
 		        array_push($data, $link);
 		    }
 		}
@@ -72,6 +75,7 @@ class Fca {
 			$min = $minmax['min'];
 			$max = $minmax['max'];
 			
+			$classID = 15;
 		    foreach ($specialization as $sugg) {
 		    	$words = $sugg->words;
 		        $text = $symbol . ' ' . implode(", ", $words);
@@ -81,8 +85,8 @@ class Fca {
 		        );
 		        
 		        $href = getHTTPQuery($par);
-				$class = $this->normalizeLength($sugg->rank, $min, $max);
-				$link = "\n<a href='$href' title='Documents (at min): $sugg->rank' class='spec-color-$class'>$text</a>";
+				$link = "\n<a href='$href' title='Documents (at min): $sugg->rank' class='spec-color-$classID'>$text</a>";
+				$classID--;
 		        array_push($data, $link);
 		    }
 		}
@@ -112,8 +116,7 @@ class Fca {
 			$min = $minmax['min'];
 			$max = $minmax['max'];
 			
-			
-			
+			$classID = 15;
 		    foreach ($siblings as $sugg) {
 		    	$words = $sugg->words;
 				$rank = $sugg->rank;
@@ -124,8 +127,9 @@ class Fca {
 		            'database' => $this->database
 		        );
 		        $href = getHTTPQuery($parameters);
-		        $class = $this->normalizeLength($rank, $min, $max);
-				$link = "\n<a href='$href' class='sibl-color-$class' title='Degree of similarity: $rank'>$text</a>";
+				$link = "\n<a href='$href' class='sibl-color-$classID' title='Degree of similarity: $rank'>$text</a>";
+				$classID -= 3;
+				$classID = max($classID, 3);
 		        
 		        array_push($data, $link);
 		    }
