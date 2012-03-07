@@ -21,6 +21,12 @@ hr {
 .searchconcept {
 	color: red;
 	border: 1px dashed red;
+	font-weight: bold;
+}
+
+.left {
+	text-align: left;
+	font-size: 80%;
 }
 </style>
 
@@ -42,29 +48,33 @@ if ($_GET['hash'] && $_GET['database']) {
 		$left = array_slice($siblings, 0, $half);
 		$right = array_slice($siblings, $half);
 
-
-		printIntentLine($lattice->upper);
+		echo "<div class='left'>Upper neighbors:</div>";
+		printIntentLine($lattice->upper, 'Upper neighbor');
 		echo "<hr>";
-		// printIntentLine($lattice->siblings);
-		printIntentLine($left);
-		echo "<span class='intent searchconcept'>" . implode(", ", $lattice->concept) . "</span>";
-		printIntentLine($right);
-		echo "<hr>";
-		printIntentLine($lattice->lower);
+		echo "<div class='left'>Siblings:</div>";
+		echo "<table><tr><td>";
+		printIntentLine($left, 'Sibling');
+		echo "</td><td width='200'>";
+		echo "<span class='intent searchconcept' title='Search concept'>" . implode(", ", $lattice->concept) . "</span>";
+		echo "</td><td>";
+		printIntentLine($right, 'Sibling');
+		echo "</td></tr></table><hr>";
+		echo "<div class='left'>Lower neighbors:</div>";
+		printIntentLine($lattice->lower, 'Lower neighbor');
 
 	} else {
 		echo $path;
 	}
 }
 
-function printIntentLine($intents) {
+function printIntentLine($intents, $title) {
 	foreach ($intents as $intent) {
-		echo intent2string($intent);
+		echo intent2string($intent, $title);
 	}
 }
 
-function intent2string($concept) {
-	return "<span class='intent'>" . implode(", ", $concept) . "</span class='intent'>";
+function intent2string($concept, $title) {
+	return "<span class='intent' title='$title'>" . implode(",&nbsp;", $concept) . "</span class='intent'> ";
 }
 ?>
 </div>
