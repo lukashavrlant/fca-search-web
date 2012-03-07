@@ -24,10 +24,12 @@ if (isset($_GET['clearcache'])) {
 }
 
 if ($query) {
-	$searchResults = search($query, $database);
+	$cache = new Cache($database);
+	$searchResults = search($query, $database, $cache);
 
 	if ($searchResults) {
 		$sresults = new Sresults($searchResults);
+		$sresults->queryHash = $cache->name;
 	} else {
 		error_log($query . "\n", 3, "errors.log");
 	}

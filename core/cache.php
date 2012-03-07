@@ -3,6 +3,7 @@ class Cache {
 	public $minQueries = 100;
 	public $maxQueries = 200; 
 	public $useCache;
+	public $name;
 	
 	private $path; 
 	
@@ -37,8 +38,8 @@ class Cache {
 			$normQuery = $this->normalizeQuery($query);
 			
 			if ($normQuery[strlen($normQuery) - 1] != '!') {
-				$name = md5($normQuery);
-				$filepath = $this->path . $name . '.txt';
+				$this->name = md5($normQuery);
+				$filepath = $this->path . $this->name . '.txt';
 				if(file_exists($filepath)) {
 					return file_get_contents($filepath);
 				}
@@ -51,8 +52,8 @@ class Cache {
 	public function save($query, $result) {
 		if ($this->useCache) {
 			$normQuery = $this->normalizeQuery($query);
-			$name = md5($normQuery);
-			file_put_contents($this->path . $name . '.txt', $result);
+			$this->name = md5($normQuery);
+			file_put_contents($this->path . $this->name . '.txt', $result);
 			$this->invalidate();
 		}
 	}

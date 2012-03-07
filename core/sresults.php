@@ -4,6 +4,7 @@ class Sresults {
 	public $linksOnPage;
 	public $showURL;
 	public $showDescription;
+	public $queryHash;
 	
 	private $documents;
 	private $currentPage;
@@ -27,12 +28,19 @@ class Sresults {
 		$html = "<div class='meta'>\n";
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ", ";
-		$html .= "context objects: " . $this->meta->objects . ", ";
+		$html .= "<br>context objects: " . $this->meta->objects . ", ";
 		$html .= "attributes: " . $this->meta->attributes . ", ";
 		$html .= "lower concepts: " . $this->meta->lower . ", ";
 		$html .= "upper: " . $this->meta->upper . ", ";
-		$html .= "neighbor: " . $this->meta->neighbor;
+		$html .= "neighbor: " . $this->meta->neighbor . ", ";
+
+		if ($this->queryHash) {
+			$database = htmlspecialchars($_GET['database']);
+			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>show lattice</a>";
+		}
+
 		$html .= "</div>";
+
 		return $html;
 	}
 	
