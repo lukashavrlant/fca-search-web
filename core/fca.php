@@ -34,9 +34,9 @@ class Fca {
 		    	$words = $sugg->words;
 		        $text = $symbol . ' ' . implode(", ", $words);
 				
-				$newQuery = strtolower($this->originQuery);
+				$newQuery = $this->originQuery;
 				foreach ($words as $word) {
-					$newQuery = str_replace(strtolower($word), '', $newQuery);
+					$newQuery = str_ireplace(strtolower($word), '', $newQuery);
 				}
 				$newQuery = trim($newQuery);
 				$newQuery = preg_replace('/\s+/', ' ', $newQuery);
