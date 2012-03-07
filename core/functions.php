@@ -12,8 +12,13 @@ function search($query, $database, $cache, $format = 'json') {
     $espacedQuery = escapeshellarg($query);
     $command = PYTHON3 . FCASEARCH . "-d $database -q $espacedQuery -f $format";
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
-	$cache->save($query, $data);
-    return json_decode($data);
+    $decodedJson = json_decode($data);
+    if ($decodedJson) {
+        $cache->save($query, $data);
+        return $decodedJson;
+    } else {
+        return null;
+    }
 }
 
 function getFcaExtension($results) {   
