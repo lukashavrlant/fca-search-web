@@ -25,13 +25,15 @@ if (isset($_GET['clearcache'])) {
 
 if ($query) {
 	$cache = new Cache($database);
-	$searchResults = search($query, $database, $cache);
+	$searchResults = false;
 
-	if ($searchResults) {
+	try {
+		$searchResults = search($query, $database, $cache);
 		$sresults = new Sresults($searchResults);
 		$sresults->queryHash = $cache->name;
-	} else {
-		error_log($query . "\n", 3, "errors.log");
+	} catch (SearchException $ex) {
+		$logInfo = $query . "\n";
+		error_log($logInfo, 3, "errors.log");
 	}
 }
 ?>
