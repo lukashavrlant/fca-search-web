@@ -27,8 +27,8 @@ class Sresults {
 		$showTime = $time == 0 ? '0 (cache)' : $time . " s";
 		$html = "<div class='meta'>\n";
 		$html .= "Total documents: $this->totalLinks, ";
-		$html .= "search time: " . $showTime . ", ";
-		$html .= "<br>context objects: " . $this->meta->objects . ", ";
+		$html .= "search time: " . $showTime . ".";
+		$html .= "<br>Context objects: " . $this->meta->objects . ", ";
 		$html .= "attributes: " . $this->meta->attributes . ", ";
 		$html .= "lower concepts: " . $this->meta->lower . ", ";
 		$html .= "upper: " . $this->meta->upper . ", ";

@@ -28,6 +28,10 @@ hr {
 	text-align: left;
 	font-size: 80%;
 }
+
+.unused {
+	color: gray;
+}
 </style>
 
 <div style="text-align:center;">
@@ -61,6 +65,11 @@ if ($_GET['hash'] && $_GET['database']) {
 		echo "</td></tr></table><hr>";
 		echo "<div class='left'>Lower neighbors:</div>";
 		printIntentLine($lattice->lower, 'Lower neighbor');
+		echo "<hr>";
+		echo "<div class='left'>Unused concepts:</div>";
+		echo "<div class='unused'>";
+		printIntentLine($lattice->trash, 'Unused concept');
+		echo "</div>";
 
 	} else {
 		echo $path;
