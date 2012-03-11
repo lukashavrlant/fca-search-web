@@ -11,13 +11,20 @@ require_once 'loader.php';
 
 $query = getGETValue('query', '');
 $database = getGETValue('database', 'matweb');
+$lang = getGETValue('lang', 'cs');
 
 Settings::loadSettings();
 
-if (LOCALHOST)
-	$databases = array('matweb', 'jpw', 'inf', 'small', 'jakpodnikat');
-else 
-	$databases = array('inf', 'jpwi', 'jakpodnikat');
+if (LOCALHOST) {
+	$databases = array('matweb', 'jpw', 'inf', 'small', 'jakpodnikat', 'radim');
+} else {
+	$databases = Settings::get('databases');
+	if (isset($databases->$lang)) {
+		$databases = $databases->$lang;
+	} else {
+		$databases = $databases->cs;
+	}
+}
 
 if (isset($_GET['clearcache'])) {
 	Cache::clearCache($_GET['clearcache']);
