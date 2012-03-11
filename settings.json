@@ -23,6 +23,6 @@
 
 	"databases" : {
 		"cs" : ["inf", "jpwi", "jakpodnikat"],
-		"en" : ["radim"]
+		"en" : ["articles"]
 	}
 }
