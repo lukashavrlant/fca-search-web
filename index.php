@@ -15,7 +15,7 @@ $lang = getGETValue('lang', 'cs');
 
 Settings::loadSettings();
 
-if (LOCALHOST) {
+if (false) {
 	$databases = array('matweb', 'jpw', 'inf', 'small', 'jakpodnikat', 'radim');
 } else {
 	$databases = Settings::get('databases');
@@ -57,6 +57,7 @@ if ($query) {
 		    <div class="searchinput">
 		    	<input type="text" size="50" name="query" value="<?=htmlspecialchars($query, ENT_QUOTES)?>" class="in"> 
 		    	<input type="submit" name="search" class="ok" value="search">
+		    	<input type="hidden" name="lang" value="<?=$lang?>">
 		    
 			    <select name="database">
 			        <?php
@@ -66,6 +67,9 @@ if ($query) {
 			        }
 			        ?>
 			    </select>
+
+			    <a href="?lang=cs"><img src="images/cs.gif"></a>
+			    <a href="?lang=en"><img src="images/en.gif"></a>
 		    </div>
 		</form>
 		
