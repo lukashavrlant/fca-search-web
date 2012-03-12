@@ -23,6 +23,6 @@
 
 	"databases" : {
 		"cs" : ["inf", "jpwi", "jakpodnikat"],
-		"en" : ["articles", "articlesloc"]
+		"en" : ["articles"]
 	}
 }

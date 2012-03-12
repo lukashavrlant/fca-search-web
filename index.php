@@ -15,7 +15,7 @@ $lang = getGETValue('lang', 'cs');
 
 Settings::loadSettings();
 
-if (false) {
+if (LOCALHOST) {
 	$databases = array('matweb', 'jpw', 'inf', 'small', 'jakpodnikat', 'radim');
 } else {
 	$databases = Settings::get('databases');
