@@ -39,7 +39,7 @@ class Fca {
 				
 				$newQuery = $this->originQuery;
 				foreach ($words as $word) {
-					$newQuery = str_ireplace(strtolower($word), '', $newQuery);
+					$newQuery = $this->removeKeyword($newQuery, $word);
 				}
 				$newQuery = trim($newQuery);
 				$newQuery = preg_replace('/\s+/', ' ', $newQuery);
@@ -140,6 +140,15 @@ class Fca {
 	    }
 	    
 	    return implode(' | ', $data);
+	}
+
+	private function removeKeyword($query, $keyword)
+	{
+		$query = preg_replace('#(\pL+)#u', ' \\1 ', $query);
+		$query = str_ireplace(' ' . $keyword . ' ', '', $query);
+		$query = preg_replace('# (\pL+) #u', '\\1', $query);
+		$query = trim($query);
+		return $query;
 	}
 
 	private function applySettings() {
