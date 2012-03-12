@@ -15,6 +15,7 @@ class Fca {
 		$this->results = $results->fca;
 		$this->originQuery = getGETValue('query');
 		$this->database = getGETValue('database', 'matweb');
+		$this->lang = getGETValue('lang', 'cs');
 		$this->applySettings();
 		$this->totalLinks = count($results->documents);
 	}
@@ -45,7 +46,8 @@ class Fca {
 				
 		        $par = array(
 		            'database' => $this->database,
-		            'query' => $newQuery
+		            'query' => $newQuery,
+		            'lang' => $this->lang
 		        );
 		        
 		        $href = getHTTPQuery($par);
@@ -81,7 +83,8 @@ class Fca {
 		        $text = $symbol . ' ' . implode(", ", $words);
 		        $par = array(
 		            'database' => $this->database,
-		            'query' => $this->originQuery . ' ' . implode(" ", $words)
+		            'query' => $this->originQuery . ' ' . implode(" ", $words),
+		            'lang' => $this->lang
 		        );
 		        
 		        $href = getHTTPQuery($par);
@@ -124,7 +127,8 @@ class Fca {
 		        $text = $symbol . ' ' . implode(', ', $words);
 		        $parameters = array(
 		            'query' => implode(' ', $words),
-		            'database' => $this->database
+		            'database' => $this->database,
+		            'lang' => $this->lang
 		        );
 		        $href = getHTTPQuery($parameters);
 				$link = "\n<a href='$href' class='sibl-color-$classID' title='Degree of similarity: $rank'>$text</a>";
