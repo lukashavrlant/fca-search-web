@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 
 define('LOCALHOST', $_SERVER['HTTP_HOST'] == 'localhost');
 define('ROOT', dirname(__FILE__) . '/');
+define('CACHE', ROOT . 'cache/');
 require_once 'constants.php';
 
 $supportedActions = array('d', 'q', 'f', 'links', 'linkscount', 'words', 'freq', 'docid', 'tf', 'findURL', 'finddocid', 
@@ -105,7 +106,7 @@ function do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = NULL)
     echo "</div>";
 }
 
-
+// basic API
 if (count($_GET)) {
 	$data = search($_GET, $supportedActions);
 	if (isset($_GET['pretty'])) {
@@ -115,3 +116,36 @@ if (count($_GET)) {
 		echo $data;
 	}
 }
+
+if ($_POST) {
+    $data = $_POST['data'];
+    $name = md5($data) . '.txt';
+    $directory = CACHE . '__temp/';
+    if(!file_exists($directory)) {
+        mkdir($directory);
+    }
+    $path = $directory . $name;
+    file_put_contents($path, $data);
+
+    $command = PYTHON3 . FCASEARCH . '--data ' . $path;
+    $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
+    echo $data;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
