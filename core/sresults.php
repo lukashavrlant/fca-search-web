@@ -36,7 +36,8 @@ class Sresults {
 
 		if ($this->queryHash) {
 			$database = htmlspecialchars($_GET['database']);
-			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>part of concept lattice</a>";
+			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>part of concept lattice</a>, ";
+			$html .= "<a href='context.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>context</a>";
 		}
 
 		$html .= "</div>";
