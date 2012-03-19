@@ -28,15 +28,15 @@ class Sresults {
 		$html = "<div class='meta'>\n";
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ".";
-		$html .= "<br>Context objects: " . $this->meta->objects . ", ";
+		$html .= "<br>FCA info: Objects: " . $this->meta->objects . ", ";
 		$html .= "attributes: " . $this->meta->attributes . ", ";
-		$html .= "lower concepts: " . $this->meta->lower . ", ";
+		$html .= "lower neighbor concepts: " . $this->meta->lower . ", ";
 		$html .= "upper: " . $this->meta->upper . ", ";
-		$html .= "neighbor: " . $this->meta->neighbor . ", ";
+		$html .= "siblings: " . $this->meta->neighbor . ", ";
 
 		if ($this->queryHash) {
 			$database = htmlspecialchars($_GET['database']);
-			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>show lattice</a>";
+			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>part of concept lattice</a>";
 		}
 
 		$html .= "</div>";
