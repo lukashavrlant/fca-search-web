@@ -59,7 +59,7 @@ if ($_GET['hash'] && $_GET['database']) {
 		echo "<table><tr><td>";
 		printIntentLine($left, 'Sibling');
 		echo "</td><td width='200'>";
-		echo "<span class='intent searchconcept' title='Search concept'>" . implode(", ", $lattice->concept) . "</span>";
+		echo "<span class='intent searchconcept' title='Search concept'>" . implode(", ", $lattice->conceptintent) . "</span>";
 		echo "</td><td>";
 		printIntentLine($right, 'Sibling');
 		echo "</td></tr></table><hr>";
