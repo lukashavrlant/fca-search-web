@@ -97,7 +97,7 @@ class Fca {
 		return implode(' | ', $data);
 	}
 	
-	public function getSimilar($symbol = "∼") {
+	public function getSimilar($symbol = "±") {
 		if(!Settings::get('showSiblings')) {
 			return '';
 		}
