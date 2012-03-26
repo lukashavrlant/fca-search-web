@@ -12,7 +12,6 @@ function search($query, $database, $cache, $format = 'json') {
     $espacedQuery = escapeshellarg($query);
     $command = PYTHON3 . FCASEARCH . "-d $database -q $espacedQuery -f $format";
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
-
     $decodedJson = json_decode($data);
     if ($decodedJson) {
         $cache->save($query, $data);
