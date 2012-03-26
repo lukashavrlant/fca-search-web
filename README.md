@@ -29,6 +29,6 @@ Jednoduché dotazování je realizováno GET metodou, data se specifikují pomoc
 
  Příklady volání:
 
- 	api.php?d=inf&links # vrátí seznam dokumentů z indexu `inf`
- 	api.php?d=inf&freq=logika&docid=42 # vrátí počet slov `logika` v dokumentu s ID 42 v indexu `inf`
- 	api.php?d=articles&docinfo=47&title # vrátí název stránky dokumentu s ID 47 v indexu `articles`
+ - `api.php?d=inf&links` vrátí seznam dokumentů z indexu `inf`
+ - `api.php?d=inf&freq=logika&docid=42` vrátí počet slov `logika` v dokumentu s ID 42 v indexu `inf`
+ - `api.php?d=articles&docinfo=47&title` vrátí název stránky dokumentu s ID 47 v indexu `articles`
