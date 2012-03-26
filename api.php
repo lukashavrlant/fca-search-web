@@ -118,7 +118,7 @@ if (count($_GET)) {
 }
 
 if ($_POST) {
-    $data = $_POST['data'];
+    $data = $_POST['tempsearch'];
     $name = md5($data) . '.txt';
     $directory = CACHE . '__temp/';
     if(!file_exists($directory)) {
