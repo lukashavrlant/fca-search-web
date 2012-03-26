@@ -127,7 +127,7 @@ if ($_POST) {
     $path = $directory . $name;
     file_put_contents($path, $data);
 
-    $command = PYTHON3 . FCASEARCH . '--data ' . $path;
+    $command = PYTHON3 . FCASEARCH . '--tempsearch ' . $path;
     $data = shell_exec("LANG=cs_CZ.utf-8; " . $command);
     echo $data;
 }
