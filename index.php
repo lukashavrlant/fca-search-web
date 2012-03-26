@@ -68,8 +68,8 @@ if ($query) {
 			        ?>
 			    </select>
 
-			    <a href="?lang=cs"><img src="images/cs.gif"></a>
-			    <a href="?lang=en"><img src="images/en.gif"></a>
+			    <a href="?lang=cs"><img src="images/cs.gif" alt="cs"></a>
+			    <a href="?lang=en"><img src="images/en.gif" alt="en"></a>
 		    </div>
 		</form>
 		
