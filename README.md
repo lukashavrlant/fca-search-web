@@ -32,3 +32,30 @@ Jednoduché dotazování je realizováno GET metodou, data se specifikují pomoc
  - `api.php?d=inf&links` vrátí seznam dokumentů z indexu `inf`
  - `api.php?d=inf&freq=logika&docid=42` vrátí počet slov `logika` v dokumentu s ID 42 v indexu `inf`
  - `api.php?d=articles&docinfo=47&title` vrátí název stránky dokumentu s ID 47 v indexu `articles`
+
+
+ ### FCA analýza nad externě zaslanými daty
+
+ Vyhledávač umožňuje zaslat na vstupu seznam dokumentů, vyhledávač z těchto dat vytvoří dočasný index a provede FCA analýzu jako nad běžně existujícím indexem a vrátí výsledek. Volání tohoto API se provádí přes HTTP POST metodu. Na adresu `/api.php` stačí zaslat metodou POST v proměnné `tempsearch` seznam dokumentů, nad kterými má být provedena FCA analýza. Data musí být ve formátu JSON a musí být v tomto tvaru: 
+
+ 	{
+		'data' : [
+			{
+				'content' : 'Obsah prvního dokumentu.',
+				'title' : 'Titulek prvního dokumentu',
+				'description' : 'Popisek prvního dokumentu',
+				'url' : 'http://example.com/stranka1.html',
+				'type' : 'txt'
+			}, 
+			{
+				'content' : 'Obsah druhého dokumentu.',
+				'title' : 'Titulek druhého dokumentu',
+				'description' : 'Popisek druhého dokumentu',
+				'url' : 'http://example.com/stranka2.html',
+				'type' : 'txt'
+			}, 
+		],
+		'options' : {
+			'lang' : 'cs'
+		}
+	}
