@@ -28,7 +28,7 @@ class Sresults {
 		$html = "<div class='meta'>\n";
 		$html .= "Total documents: $this->totalLinks, ";
 		$html .= "search time: " . $showTime . ".";
-		$html .= "<br>FCA info: Objects: " . $this->meta->objects . ", ";
+		$html .= "<br>FCA info: objects: " . $this->meta->objects . ", ";
 		$html .= "attributes: " . $this->meta->attributes . ", ";
 		$html .= "lower neighbor concepts: " . $this->meta->lower . ", ";
 		$html .= "upper: " . $this->meta->upper . ", ";
@@ -37,7 +37,7 @@ class Sresults {
 		if ($this->queryHash) {
 			$database = htmlspecialchars($_GET['database']);
 			$html .= "<a href='lattice.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>part of concept lattice</a>, ";
-			$html .= "<a href='context.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>context</a>";
+			$html .= "<a href='context.php?hash=" . $this->queryHash . "&amp;database=" . $database . "'>formal context</a>";
 		}
 
 		$html .= "</div>";
