@@ -22,7 +22,7 @@
 	"maxDescriptionLength" : 255,
 
 	"databases" : {
-		"cs" : ["inf", "jpwi", "jakpodnikat"],
+		"cs" : ["inf", "jpwi", "jakpodnikat", "matweb"],
 		"en" : ["articles"]
 	}
 }
