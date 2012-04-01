@@ -46,11 +46,11 @@ if ($query) {
 ?>
 <!DOCTYPE HTML>
 <meta charset="utf-8">
-<title>Chandler &mdash; FCA search engine</title>
+<title>CLaSeek &mdash; FCA search engine</title>
 <link rel="stylesheet" media="screen" href="styly.css">
 
 <div class="web">
-	<div class="header"><h1><a href="./">Chandler &mdash; FCA search engine</a></h1></div>
+	<div class="header"><h1><a href="./">CLaSeek &mdash; FCA search engine</a></h1></div>
 	
 	<div class="content">
 		<form method="get" class="search">
