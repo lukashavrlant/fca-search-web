@@ -47,6 +47,4 @@ class Settings
 			"showSiblings" => true,
 		);
 	}
-
-	
 }
