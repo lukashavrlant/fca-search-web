@@ -10,7 +10,7 @@ define('LOCALHOST', $_SERVER['HTTP_HOST'] == 'localhost');
 require_once 'loader.php';
 
 $query = getGETValue('query', '');
-$database = getGETValue('database', 'matweb');
+$database = getGETValue('database', 'inf');
 $lang = getGETValue('lang', 'cs');
 
 Settings::loadSettings();
