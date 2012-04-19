@@ -1,7 +1,7 @@
 <?php
 setlocale(LC_ALL, 'cs_CZ.utf8');
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 define('ROOT', dirname(__FILE__) . '/');
 define('MIN_LINKS_TO_SHOW_SPECIALIZATION', 10);
