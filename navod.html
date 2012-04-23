@@ -1,0 +1,63 @@
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Co dokáže CLaSeek</title>
+	<style type="text/css">
+		body {
+			width:800px;
+		}
+		li {
+			margin-top:15px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Online demo vyhledávače</h2>
+		<h3>Základní vyhledávání</h3>
+			<p>Současná verze je nainstalována na adrese <a href="http://phoebe.inf.upol.cz/claseek/">phoebe.inf.upol.cz/claseek</a>. Je tam vytvořeno celkem pět testovacích indexů, čtyři české a jeden anglický. Vlajky přepínají mezi českým a anglickým seznamem indexů. Odkazy většinou vedou na lokální kopie dokumentů. Popis indexů spolu s ukázkovými dotazy:</p>
+
+			<ul>
+			<li><code>inf</code> je index webu <a href="http://www.inf.upol.cz/">katedry informatiky</a>. Můžete zde klást dotazy jako <a href="http://phoebe.inf.upol.cz/claseek/?query=fuzzy&search=search&lang=cs&database=inf">fuzzy</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=práce&search=search&lang=cs&database=inf">práce</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=zkoušky&search=search&lang=cs&database=inf">zkoušky</a> nebo <a href="http://phoebe.inf.upol.cz/claseek/?query=předměty&search=search&lang=cs&database=inf">předměty</a>. Výsledky jsou všelijaké, viz text diplomové práce.</li>
+
+			<li><code>jpwi</code> je index webu <a href="http://www.jakpsatweb.cz/">jak psát web.cz</a>, který obsahuje spoustu článků obecně o webu, HTML, CSS, Javascriptu apod. Můžete zde klást dotazy jako <a href="http://phoebe.inf.upol.cz/claseek/?query=hosting+php&search=search&lang=cs&database=jpwi">hosting php</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=použitelnost+webů&search=search&lang=cs&database=jpwi">použitelnost webů</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=formuláře&search=search&lang=cs&database=jpwi">formuláře</a> nebo <a href="http://phoebe.inf.upol.cz/claseek/?query=javascript+cyklus&search=search&lang=cs&database=jpwi">javascript cyklus</a>.</li>
+
+			<li><code>jakpodnikat</code> je index webu <a href="http://www.jakpodnikat.cz/">jak podnikat.cz</a>, který obsahuje články o podnikání, daních apod. Můžete zde klást dotazy typu <a href="http://phoebe.inf.upol.cz/claseek/?query=př%C3%ADjmy&search=search&lang=cs&database=jakpodnikat">příjmy</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=slevy+na+dani&search=search&lang=cs&database=jakpodnikat">slevy na dani</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=adsense+dph&search=search&lang=cs&database=jakpodnikat">adsense dph</a> nebo </li>
+
+			<li><code>matweb</code> je index webu <a href="http://www.matweb.cz/">matweb.cz</a>, který obsahuje články o středoškolské matematice. Můžete zde klást dotazy typu <a href="http://phoebe.inf.upol.cz/claseek/?query=množiny&search=search&lang=cs&database=matweb">množiny</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=interval&search=search&lang=cs&database=matweb">interval</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=limita+funkce&search=search&lang=cs&database=matweb">limita funkce</a> nebo <a href="http://phoebe.inf.upol.cz/claseek/?query=bod&search=search&lang=cs&database=matweb">bod</a>.</li>
+
+			<li><code>articles</code> je index anglických článků zaměstnanců KI, tedy především články se zaměřením na fuzzy, FCA a faktorová analýza. Můžete zde klást dotazy typu <a href="http://phoebe.inf.upol.cz/claseek/?query=fuzzy+logic&search=search&lang=en&database=articles">fuzzy logic</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=hedges&search=search&lang=en&database=articles">hedges</a>, <a href="http://phoebe.inf.upol.cz/claseek/?query=formal+concept+analysis&search=search&lang=en&database=articles">formal concept analysis</a> nebo <a href="http://phoebe.inf.upol.cz/claseek/?database=articles&query=decomposition+matrices&lang=en">decomposition matrices</a>.</li>
+			</ul>
+
+			<p>Vyhledávač má implementovanou i triviální kontrolu překlepů, viz například dotaz <a href="http://phoebe.inf.upol.cz/claseek/?query=ourtata&search=search&lang=cs&database=inf">ourtata</a>.</p>
+		<h3>Ukázka dotazovacího API</h3>
+			<p>Vyhledávač poskytuje primitivní dotazovací API. Umí vracet informace o indexu a o jednotlivých dokumentech. API je <a href="https://github.com/havrlant/fca-search-web/wiki/Dokumentace">popsáno v dokumentaci</a>, takže jen několik málo příkladů: </p>
+
+			<ul>
+				<li><a href="http://phoebe.inf.upol.cz/claseek/api.php?d=inf&links">seznam všech zaindexovaných URL v indexu <code>inf</code></a></li>
+				<li><a href="http://phoebe.inf.upol.cz/claseek/api.php?d=inf&linkscount">počet všech zaindexovaných dokumentů</a></li>
+				<li><a href="http://phoebe.inf.upol.cz/claseek/api.php?d=inf&finddocid=jan">seznam všech URL včetně jejich ID, které obsahují string <i>jan</i></a></li>
+				<li><a href="http://phoebe.inf.upol.cz/claseek/api.php?d=inf&docinfo=81">Informace o dokumentu s ID 81</a></li>
+				<li><a href="http://phoebe.inf.upol.cz/claseek/api.php?d=inf&docinfo=81&title">Název stránky s ID 81</a></li>
+			</ul>
+
+		<h3>Ukázka zasílání vlastních dat vyhledávači</h3>
+			<p>Vyhledávač dokáže přijmout přes HTTP POST sadu externích dokumentů, vytvořit dočasný index a provést nad daty FCA analýzu. Tohoto lze různě využít. SearchSleuth například zasílal dotaz, který mu uživatel položil, webovému vyhledávači, ten mu vrátil například 100 výsledků, SearchSleuth je zpracoval jako 100 různých dokumentů a nabídl úpravy dotazu. Pomocí tohoto API, které CLaSeek má, toto chování můžeme naprogramovat také. </p>
+
+			<p>Na adrese <a href="http://skola.havrlant.net/diplomka/api/">skola.havrlant.net/diplomka/api</a> se nachází triviální aplikace, která toto API využívá. Jako první vložíme do textového pole dotaz. Aplikce odešle data do Google API, které vrátí 50 výsledků. Z těchto výsledků seskládáme dokumenty, zašleme je vyhledávači na adrese phoebe/claseek, ten provede FCA analýzu a aplikace zobrazí FCA část analýzy. Samotné dokumenty už nezobrazuje, je to čistě ukázka API. Příklady volání:</p>
+			<ul>
+				<li><a href="http://skola.havrlant.net/diplomka/api/?query=fuzzy+logic">fuzzy logic</a></li>
+				<li><a href="http://skola.havrlant.net/diplomka/api/?query=hollywood">hollywood</a></li>
+				<li><a href="http://skola.havrlant.net/diplomka/api/?query=limit+of+a+function">limit of a function</a></li>
+				<li><a href="http://skola.havrlant.net/diplomka/api/?query=palacky+university">palacky university</a></li>
+			</ul>
+
+			<p>Aplikace pracuje pouze s anglickým Googlem, výsledky pro jiný jazyk mohou být všelijaké. Aplikace navíc používá neoficiální Google API, které nefunguje zrovna moc dobře. Občas nevrátí žádné výsledky, občas vrátí úplně jiné výsledky, než by to vrátit mělo, takže je to taková ruská ruleta. Předchozí čtyři ukázky fungují vždy správně, protože se aplikace nedotazuje znova Googlu, má výsledky z Googlu uložené lokálně. Vyhledávači se ale data posílají vždy, FCA analýza probíhá při každém požadavku znova.</p>
+
+	<h2>Jak nainstalovat CLaSeek na vlastní server</h2>
+		<p>Popis instalace a použití je popsán na Githubu, kde jsou také hostované zdrojové soubory. Na stránce <a href="https://github.com/havrlant/fca-search/wiki/instalace">github/fca-search/wiki/instalace</a> je popsána instalace jádra vyhledávače. Instalace z CD je jednodušší, stačí překopírovat soubory a správná oprávnění adresářů už by měla být nastavena. Stejně tak se v adresáři <code>/files/bin/</code> nachází aplikace <code>pdftotext</code>, ale pouze pro Mac OS X. Dokumentace pak je na stránce <a href="https://github.com/havrlant/fca-search/wiki/dokumentace">github/fca-search/wiki/dokumentace</a>.</p>
+
+		<p>Popis instalace webového rozhraní se nachází na adrese <a href="https://github.com/havrlant/fca-search-web/wiki/instalace">github/fca-search-web/wiki/instalace</a> a dokumentace na stránce <a href="https://github.com/havrlant/fca-search-web/wiki/dokumentace">github/fca-search-web/wiki/dokumentace</a>. Webové rozhraní je naprogramováno v PHP.</p>
+
+		<p>Obě aplikace byly testovány na Mac OS X (10.7.3) a na Linuxu (Debian GNU/Linux 6.0).</p>
+</body>
+</html>
